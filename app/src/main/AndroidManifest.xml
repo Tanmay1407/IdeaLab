@@ -14,13 +14,10 @@
         android:theme="@style/Theme.IdeaLab"
         tools:targetApi="31">
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SplashScreen"
+            android:name=".activity.SplashScreen"
             android:exported="true"
             android:theme="@style/Theme.IdeaLab.Full">
             <intent-filter>
