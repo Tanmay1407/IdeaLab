@@ -15,4 +15,8 @@
         android:toAlpha="1"
         android:duration="2000"/>
 
+    <translate
+        android:fromYDelta="-50%"
+        android:duration="2000" />
+
 </set>

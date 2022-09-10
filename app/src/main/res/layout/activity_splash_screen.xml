@@ -7,28 +7,36 @@
     android:background="@color/bgColor"
     tools:context=".activity.SplashScreen">
 
-    <ImageView
-        android:id="@+id/launch_image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
+        android:layout_marginBottom="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <TextView
-        android:id="@+id/tv2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:fontFamily="@font/acme"
-        android:text="Idea Lab"
-        android:textColor="#DF7861"
-        android:textSize="46sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/launch_image"
-        app:layout_constraintStart_toStartOf="@+id/launch_image"
-        app:layout_constraintTop_toBottomOf="@+id/launch_image" />
+        <ImageView
+            android:id="@+id/launch_image"
+            android:layout_width="250sp"
+            android:layout_height="250sp"
+            android:src="@drawable/logo"
+            app:layout_constraintBottom_toTopOf="@+id/tv2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/acme"
+            android:text="Idea Lab"
+            android:textColor="#DF7861"
+            android:textSize="46sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/launch_image"
+            app:layout_constraintStart_toStartOf="@+id/launch_image" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
