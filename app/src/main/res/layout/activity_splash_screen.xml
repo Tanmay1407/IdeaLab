@@ -23,7 +23,7 @@
         android:layout_marginTop="30dp"
         android:fontFamily="@font/acme"
         android:text="Idea Lab"
-        android:textColor="#DF7861"
+        android:textColor="#0794E8"
         android:textSize="46sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/launch_image"
