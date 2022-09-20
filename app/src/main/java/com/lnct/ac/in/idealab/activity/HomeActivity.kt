@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import com.lnct.ac.`in`.idealab.R
 import com.lnct.ac.`in`.idealab.frgments.AboutUs
+import com.lnct.ac.`in`.idealab.frgments.ContactUs
 
 class HomeActivity : AppCompatActivity() {
 
@@ -17,7 +18,7 @@ class HomeActivity : AppCompatActivity() {
         frame_layout = findViewById(R.id.frame_layout)
 
         var transaction = getSupportFragmentManager().beginTransaction()
-        transaction.replace(R.id.frame_layout, AboutUs())
+        transaction.replace(R.id.frame_layout, ContactUs())
         transaction.commit()
 
     }
