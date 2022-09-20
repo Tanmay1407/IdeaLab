@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<group android:checkableBehavior="single">
+    <item
+        android:title="Home"
+        android:icon="@drawable/home_icon"
+        android:id="@+id/home" />
+    <item
+        android:title="Event"
+        android:icon="@drawable/padlock"
+        android:id="@+id/event" />
+
+    <item
+        android:title="Projects"
+        android:icon="@drawable/padlock"
+        android:id="@+id/projects" />
+    <item
+        android:title="Highlights"
+        android:icon="@drawable/padlock"
+        android:id="@+id/highlights" />
+
+
+        <item
+            android:title="About"
+            android:icon="@drawable/padlock"
+            android:id="@+id/about" />
+
+        <item
+            android:title="Contact"
+            android:icon="@drawable/padlock"
+            android:id="@+id/contact" />
+
+    </group>
+
+
+
+
+</menu>

@@ -21,11 +21,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10sp"
+                android:fontFamily="@font/almendra"
                 android:text="DISCUSS A PROJECT OR SUBMIT AN IDEA?\n OUR INBOX IS OPEN FOR ALL."
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:fontFamily="@font/almendra"
+
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

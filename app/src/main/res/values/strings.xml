@@ -2,6 +2,8 @@
     <string name="app_name">Idea Lab</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Open_Nav">"Open Navigation drawer"</string>
+    <string name="Close_Nav">"Close Navigation drawer"</string>
     <string name="q1">What <font color="#1976D2">We are</font> </string>
     <string name="a1"><font color="#1976D2">IDEA Lab</font> . will provide all facilities under one roof, for conversion of an idea into a prototype. The idea need not always be new but the emphasis would be on graduating engineers working with their hands using equipment, tools and consumables. The focus will be on training students so that they become imaginative and creative and stay so at the workplaces they join.</string>
     <string name="q2">Our <font color="#1976D2">Mission</font></string>
