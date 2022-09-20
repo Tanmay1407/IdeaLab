@@ -55,6 +55,10 @@ lateinit var navigationView: NavigationView
 
                 }
 
+      //  var transaction = getSupportFragmentManager().beginTransaction()
+      //  transaction.replace(R.id.frame_layout, ContactUs())
+      //  transaction.commit()
+
                 drawerLayout.closeDrawer(GravityCompat.START)
                 return true
 
