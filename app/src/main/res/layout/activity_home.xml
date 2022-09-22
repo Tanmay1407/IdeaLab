@@ -23,7 +23,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu"
-        app:itemIconTint="@color/blue"
         app:itemHorizontalPadding="40dp"
         app:itemBackground="@drawable/menu_item_padding"
         app:itemTextAppearance="@style/TextViewStyle">
