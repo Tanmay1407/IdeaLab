@@ -3,6 +3,7 @@
 <item
     android:left="10dp"
     android:right="10dp"
+    android:height="60dp"
     android:drawable="@drawable/menu_back_state"
     >
 

@@ -8,14 +8,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:elevation="0dp"
-        android:fitsSystemWindows="true"
-        >
+        android:fitsSystemWindows="true">
 
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/bgColor"
+            android:background="@color/white"
             android:id="@+id/tool_bar"
+            app:titleTextColor="@color/dark_blue"
             app:popupTheme="@style/AppTheme.popUpOverlay"
             app:layout_scrollFlags="scroll|enterAlways"/>
 

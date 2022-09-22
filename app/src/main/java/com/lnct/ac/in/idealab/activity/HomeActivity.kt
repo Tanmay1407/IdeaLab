@@ -16,13 +16,16 @@ import com.google.android.material.navigation.NavigationView
 import com.lnct.ac.`in`.idealab.R
 import com.lnct.ac.`in`.idealab.frgments.AboutUs
 import com.lnct.ac.`in`.idealab.frgments.ContactUs
+import com.lnct.ac.`in`.idealab.frgments.Event
+import com.lnct.ac.`in`.idealab.frgments.HomeFragment
 
 class HomeActivity : AppCompatActivity() {
 
-lateinit var drawerLayout: DrawerLayout
-lateinit var toggle: ActionBarDrawerToggle
-lateinit var toolbar: androidx.appcompat.widget.Toolbar
-lateinit var navigationView: NavigationView
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var toggle: ActionBarDrawerToggle
+    lateinit var toolbar: androidx.appcompat.widget.Toolbar
+    lateinit var navigationView: NavigationView
+    lateinit var fm: FragmentManager
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,14 +42,17 @@ lateinit var navigationView: NavigationView
         drawerLayout.addDrawerListener(toggle)
 
         toggle.syncState()
+        loadFragment(HomeFragment(),"Home")
 
         navigationView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
                 val id = item.itemId
 
                 when(id){
-                    R.id.home -> Toast.makeText(this@HomeActivity,"HOME",Toast.LENGTH_SHORT).show()
-                    R.id.event -> Toast.makeText(this@HomeActivity,"Event",Toast.LENGTH_SHORT).show()
+//                    R.id.home -> Toast.makeText(this@HomeActivity,"HOME",Toast.LENGTH_SHORT).show()
+                    R.id.home -> loadFragment(HomeFragment(),"Home")
+//                    R.id.event -> Toast.makeText(this@HomeActivity,"Event",Toast.LENGTH_SHORT).show()
+                    R.id.event -> loadFragment(Event(),"Events")
                     R.id.about -> loadFragment(AboutUs(),"About Us")
                     R.id.contact -> loadFragment(ContactUs(),"Contact Us")
                     R.id.highlights -> Toast.makeText(this@HomeActivity,"Highlight",Toast.LENGTH_SHORT).show()
@@ -68,7 +74,8 @@ lateinit var navigationView: NavigationView
 
     fun loadFragment(fragment: Fragment, fragName: String) {
         toolbar.title = fragName
-        val fm : FragmentManager = supportFragmentManager;
+//        val fm : FragmentManager = supportFragmentManager;
+        fm = supportFragmentManager
         val ft : FragmentTransaction = fm.beginTransaction()
 
         ft.add(R.id.container,fragment)

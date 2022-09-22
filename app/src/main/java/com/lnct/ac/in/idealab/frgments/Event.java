@@ -4,7 +4,9 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,10 +17,10 @@ import com.lnct.ac.in.idealab.adapters.EventRecyclerAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link EventFragment#newInstance} factory method to
+ * Use the {@link Event#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventFragment extends Fragment {
+public class Event extends Fragment {
 
     RecyclerView event_rv;
 
@@ -31,7 +33,7 @@ public class EventFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EventFragment() {
+    public Event() {
         // Required empty public constructor
     }
 
@@ -44,8 +46,8 @@ public class EventFragment extends Fragment {
      * @return A new instance of fragment EventFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static EventFragment newInstance(String param1, String param2) {
-        EventFragment fragment = new EventFragment();
+    public static Event newInstance(String param1, String param2) {
+        Event fragment = new Event();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -68,10 +70,12 @@ public class EventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
         EventRecyclerAdapter adapter = new EventRecyclerAdapter();
+//        SnapHelper mSnapHelper = new PagerSnapHelper();
 
         event_rv = view.findViewById(R.id.event_view);
-        event_rv.setLayoutManager(new LinearLayoutManager(getActivity().getParent()));
-
+        event_rv.setAdapter(adapter);
+        event_rv.setLayoutManager(new LinearLayoutManager(getActivity().getParent(), LinearLayoutManager.VERTICAL, false));
+//        mSnapHelper.attachToRecyclerView(event_rv);
 
         return view;
     }
