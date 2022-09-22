@@ -4,17 +4,17 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
+import com.lnct.ac.`in`.idealab.auth.StartActivity
 import com.lnct.ac.`in`.idealab.R
 
 class SplashScreen : AppCompatActivity() {
     lateinit var logoImg : ImageView
     lateinit var tv2: TextView
-    lateinit var  icon_holder: ConstraintLayout
+    lateinit var  icon_holder: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,7 @@ class SplashScreen : AppCompatActivity() {
 
         Handler().postDelayed({
             finish()
-            startActivity(Intent(this@SplashScreen, HomeActivity::class.java))
+            startActivity(Intent(this@SplashScreen, StartActivity::class.java))
 
         },2500
 

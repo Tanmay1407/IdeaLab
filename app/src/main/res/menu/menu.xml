@@ -3,31 +3,31 @@
 <group android:checkableBehavior="single">
     <item
         android:title="Home"
-        android:icon="@drawable/home_icon"
+        android:icon="@drawable/home"
         android:id="@+id/home" />
     <item
         android:title="Event"
-        android:icon="@drawable/padlock"
+        android:icon="@drawable/placard"
         android:id="@+id/event" />
 
     <item
         android:title="Projects"
-        android:icon="@drawable/padlock"
+        android:icon="@drawable/project"
         android:id="@+id/projects" />
     <item
         android:title="Highlights"
-        android:icon="@drawable/padlock"
+        android:icon="@drawable/shining"
         android:id="@+id/highlights" />
 
 
         <item
             android:title="About"
-            android:icon="@drawable/padlock"
+            android:icon="@drawable/information"
             android:id="@+id/about" />
 
         <item
             android:title="Contact"
-            android:icon="@drawable/padlock"
+            android:icon="@drawable/contact"
             android:id="@+id/contact" />
 
     </group>
