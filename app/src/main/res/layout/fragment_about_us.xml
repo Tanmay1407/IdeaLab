@@ -17,15 +17,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/c1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:strokeWidth="2sp"
+                app:strokeColor="@color/blue"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:cardCornerRadius="20sp"
-                android:layout_margin="20sp">
+                android:layout_margin="10sp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -52,17 +54,19 @@
                     android:textSize="20sp"/>
 
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/c2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:strokeWidth="2sp"
+                app:strokeColor="@color/blue"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/c1"
                 app:cardCornerRadius="20sp"
-                android:layout_margin="20sp">
+                android:layout_margin="10sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,18 +100,19 @@
                     android:scaleType="centerCrop"/>
 
             </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/c3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:strokeWidth="2sp"
+                app:strokeColor="@color/blue"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/c2"
                 app:cardCornerRadius="20sp"
-                android:layout_margin="20sp">
-                android:layout_marginBottom="10dp">
+                android:layout_margin="10sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -134,11 +139,11 @@
                 android:textSize="20sp"/>
 
             </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
                 android:layout_marginTop="10sp"
                 app:layout_constraintTop_toBottomOf="@id/c3"/>
 

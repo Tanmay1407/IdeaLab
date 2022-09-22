@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
-    <style name="AppTheme.popUpOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+    <style name="AppTheme.popUpOverlay" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="toolbar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="TextViewStyle" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/muli_bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="DrawerIcon" parent="Widget.AppCompat.DrawerArrowToggle"
         >
-        <item name="color">#AE000000</item>
+        <item name="color">@color/blue</item>
     </style>
 
 

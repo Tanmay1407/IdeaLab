@@ -11,4 +11,20 @@ public class EventModel {
         this.date = date;
         this.desc = desc;
     }
+
+    public String getImage_uri() {
+        return image_uri;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
 }

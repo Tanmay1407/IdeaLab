@@ -23,12 +23,51 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header"
         app:menu="@menu/menu"
-        app:itemIconTint="@color/black"
-        android:background="@color/bgColor"
+        app:itemIconTint="@color/blue"
         app:itemHorizontalPadding="40dp"
         app:itemBackground="@drawable/menu_item_padding"
-        app:itemTextAppearance="@style/TextViewStyle"
-        />
+        app:itemTextAppearance="@style/TextViewStyle">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90sp"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="bottom">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_gravity="bottom">
+
+                <ImageView
+                    android:id="@+id/linkedin_link"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
+                    android:src="@drawable/linkedin"
+                    android:layout_marginHorizontal="10sp"/>
+
+                <ImageView
+                    android:id="@+id/instagram_link"
+                    android:layout_width="35sp"
+                    android:layout_height="35sp"
+                    android:src="@drawable/instagram"
+                    android:layout_marginHorizontal="10sp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20sp"
+                android:text="Copyright © 2022 IDEALAB | LNCT"
+                android:textAlignment="center"
+                android:layout_marginTop="10sp"/>
+
+        </LinearLayout>
+
+    </com.google.android.material.navigation.NavigationView>
 
 
 </androidx.drawerlayout.widget.DrawerLayout>
