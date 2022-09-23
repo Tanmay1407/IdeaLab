@@ -1,0 +1,128 @@
+[33mcommit 341a51e695cfec1b456e038f166b66d6805ae076[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 70fa409 9f15b07
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Fri Sep 23 12:57:02 2022 +0530
+
+    Merge pull request #4 from Tanmay1407/temporary
+    
+    gallery in home screen fragment temppppp
+
+[33mcommit 9f15b07c8ed5e31d09e570a43187986c337933de[m[33m ([m[1;31morigin/temporary[m[33m)[m
+Author: vivek <259vivek@gmail.com>
+Date:   Fri Sep 23 12:53:51 2022 +0530
+
+    gallery in home screen fragment
+
+[33mcommit 70fa409e1c2a517af32edd981b27db836c0a712f[m
+Merge: 1d832b8 eb9ee93
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Thu Sep 22 16:25:28 2022 +0530
+
+    Merge pull request #3 from Tanmay1407/recycler
+    
+    gallary added
+
+[33mcommit eb9ee931550071df87f1b13c7ba2bc0dc3b0125e[m[33m ([m[1;31morigin/recycler[m[33m)[m
+Merge: b616ef5 1d832b8
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Thu Sep 22 16:25:21 2022 +0530
+
+    Merge branch 'master' into recycler
+
+[33mcommit 1d832b8b6df355e0c913cad8a1c1ab87de06a7c7[m
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Thu Sep 22 16:21:11 2022 +0530
+
+    Drawer Updated
+
+[33mcommit b616ef5b41759ce2aa64e19fc88e715af0b49110[m
+Author: vivek <259vivek@gmail.com>
+Date:   Thu Sep 22 16:19:53 2022 +0530
+
+    gallary added
+
+[33mcommit 61e69f0e2b99dc6d8dbca48afa6b302dc563251d[m
+Merge: 18d8be3 c248f3e
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Thu Sep 22 11:03:07 2022 +0530
+
+    Merge pull request #2 from Tanmay1407/recycler
+    
+    home fragment event fragment
+
+[33mcommit c248f3e957aae7863536f3773db8e7b1d06af710[m
+Author: vivek <259vivek@gmail.com>
+Date:   Thu Sep 22 11:02:38 2022 +0530
+
+    home fragment event fragment
+
+[33mcommit 18d8be3dd9b55b9e0eb7ac475d8f274c5b8a33fa[m
+Merge: 38bef98 8ebd4ff
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Tue Sep 20 13:22:04 2022 +0530
+
+    Merge pull request #1 from Tanmay1407/recycler
+    
+    contn
+
+[33mcommit 8ebd4ff08ca2f3dd9be8328b8718b012083350c4[m
+Merge: 4080b7b 38bef98
+Author: Vivek Kumar Singh <77599446+vivek29122000@users.noreply.github.com>
+Date:   Tue Sep 20 12:05:11 2022 +0530
+
+    Merge branch 'master' into recycler
+
+[33mcommit 4080b7ba6b52a99b212e2c17b1a8c01aee8ddbed[m
+Author: vivek <259vivek@gmail.com>
+Date:   Tue Sep 20 11:52:30 2022 +0530
+
+    contn
+
+[33mcommit 38bef9869339881bee8719a1437e25306c937730[m
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Tue Sep 20 11:08:57 2022 +0530
+
+    Nav Added ..
+
+[33mcommit ad936f23f0f46779a0d1b9011822f91f8f57c63c[m
+Merge: c15f886 7202f65
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Mon Sep 12 12:27:11 2022 +0530
+
+    Merge remote-tracking branch 'origin/master'
+    
+    # Conflicts:
+    #       .idea/misc.xml
+    #       app/src/main/res/layout/activity_home.xml
+    #       app/src/main/res/layout/activity_splash_screen.xml
+    #       app/src/main/res/values/colors.xml
+
+[33mcommit c15f88612e0b6a79701549cfc2c6ae535108d283[m
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Mon Sep 12 12:26:28 2022 +0530
+
+    Nav Starting ..
+
+[33mcommit 7202f65f3a5cf4cfe84f3de382f60ad836f27dd2[m
+Author: vivek <259vivek@gmail.com>
+Date:   Sat Sep 10 19:44:40 2022 +0530
+
+    animation, aboutus
+
+[33mcommit f0d3ed0a3eea2b048464ea4e157280ba59a91d7d[m
+Author: vivek <259vivek@gmail.com>
+Date:   Fri Sep 9 22:01:34 2022 +0530
+
+    animation, aboutus
+
+[33mcommit 5c35b06b9a0143fb783aa48c797cf3a4bd43436b[m
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Fri Sep 9 12:35:00 2022 +0530
+
+    Home Activity added
+
+[33mcommit 11158688b9a1623843d2069c11dce94117090839[m
+Author: Tanmay Patel <tanmaypatel1407@gmail.com>
+Date:   Thu Sep 8 16:30:30 2022 +0530
+
+    Initial commit
