@@ -7,10 +7,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".frgments.HomeFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="0dp"
+        android:elevation="0dp"
+        app:cardElevation="0dp"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,36 +25,37 @@
                 android:id="@+id/cardView2"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:elevation="-1dp"
-                app:cardElevation="-1dp"
-                app:layout_constraintDimensionRatio="1.5"
+                android:elevation="0dp"
+                app:cardElevation="0dp"
+                app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/gallery_recycler">
+                app:layout_constraintTop_toTopOf="parent">
 
-                <VideoView
-                    android:id="@+id/video_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+            <VideoView
+                android:id="@+id/video_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
             </androidx.cardview.widget.CardView>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/gallery_recycler"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                android:layout_height="200sp"
+                android:layout_marginTop="20sp"
+                tools:listitem="@layout/home_fragment_gallery"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 tools:itemCount="5"
-                tools:listitem="@layout/home_fragment_gallery" />
+                app:spanCount="2"
+                app:layout_constraintTop_toBottomOf="@id/cardView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    </androidx.core.widget.NestedScrollView>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

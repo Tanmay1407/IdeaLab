@@ -34,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
 
         drawerLayout = findViewById(R.id.nav_drawer)
         navigationView = findViewById(R.id.navigation_view)
+        navigationView.itemIconTintList = null
         toolbar = findViewById(R.id.tool_bar)
 
        setSupportActionBar(toolbar)
