@@ -30,7 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/acme"
-            android:text="LNCT, Bopal"
+            android:text="LNCT, Bhopal"
             android:textColor="#2957A4"
             android:textSize="24sp"
             android:textStyle="bold"

@@ -4,13 +4,24 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSmoothScroller;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.lnct.ac.in.idealab.R;
+import com.lnct.ac.in.idealab.adapters.HomeGalleryAdapter;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +32,10 @@ public class HomeFragment extends Fragment {
 
     VideoView video_view;
     View view;
+    RecyclerView gallery_view;
+    HomeGalleryAdapter gallery_adapter;
+    SnapHelper snap_helper;
+    ArrayList<String> uri_list;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,6 +81,7 @@ public class HomeFragment extends Fragment {
     public void onStart() {
         super.onStart();
         video_view.start();
+        scroll_recycler();
     }
 
     @Override
@@ -73,6 +89,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
+
 
         video_view = view.findViewById(R.id.video_view);
         video_view.setVideoPath("android.resource://" + getActivity().getPackageName() + "/"
@@ -84,6 +101,54 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        snap_helper = new PagerSnapHelper();
+
+//        TODO add url array list to adapter's constructor
+        gallery_adapter = new HomeGalleryAdapter();
+        gallery_view = view.findViewById(R.id.gallery_recycler);
+        gallery_view.setNestedScrollingEnabled(true);
+        gallery_view.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false));
+//        gallery_view.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.HORIZONTAL, false));
+        gallery_view.setAdapter(gallery_adapter);
+
+        RecyclerView.SmoothScroller smoothScroller = new LinearSmoothScroller(getContext()) {
+            @Override protected int getVerticalSnapPreference() {
+                return LinearSmoothScroller.SNAP_TO_START;
+            }
+        };
+
+
+
+        snap_helper.attachToRecyclerView(gallery_view);
+
         return view;
     }
+
+    private void scroll_recycler() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+//                TODO change to i<uri_list.size()
+                for(int i=0; i< 8; i++) {
+                    int finalI = i;
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+//                            gallery_view.scrollToPosition(finalI);
+                            gallery_view.smoothScrollToPosition(finalI);
+                        }
+                    });
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(i == 7) i = 0;
+                }
+
+            }
+        }).start();
+    }
+
 }
