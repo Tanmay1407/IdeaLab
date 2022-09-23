@@ -16,8 +16,7 @@
         android:src="@drawable/userimage_icon"
         app:layout_constraintBottom_toBottomOf="@+id/user_name_nav"
         app:layout_constraintTop_toTopOf="@+id/user_name_nav"
-        tools:layout_editor_absoluteX="16dp"
-        tools:ignore="MissingConstraints" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <TextView
         android:id="@+id/user_name_nav"
