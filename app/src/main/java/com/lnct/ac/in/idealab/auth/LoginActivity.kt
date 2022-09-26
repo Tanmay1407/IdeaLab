@@ -23,8 +23,12 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnLogin).setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                finish()
-                startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+//                finish()
+//                startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
+            val otpVerificationDialog = OTPVerificationDialog(this@LoginActivity,"user@gmail.com")
+                otpVerificationDialog.setCancelable(false)
+                otpVerificationDialog.show()
+
             }
         })
 

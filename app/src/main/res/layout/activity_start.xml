@@ -79,12 +79,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btnHelp"
+            android:id="@+id/btnSkip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:background="#00000000"
-            android:text="How do we work?"
+            android:text="Skip Login ?"
             android:textColor="@color/black" />
 
     </LinearLayout>

@@ -10,12 +10,16 @@
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/drawable/menu_back_state.xml" value="0.1" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/drawable/menu_item_padding.xml" value="0.1" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/drawable/right_swipe.xml" value="0.204" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/drawable/round_back_brown.xml" value="0.1" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/drawable/round_back_red.xml" value="0.1" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_home.xml" value="0.16587677725118483" />
-        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_login.xml" value="0.4" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_login.xml" value="0.264" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_register.xml" value="0.25" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_splash_screen.xml" value="0.3625" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/activity_start.xml" value="0.25" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/app_bar_home.xml" value="0.1" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/drawer_menu.xml" value="0.23148148148148148" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/drop_down_list_item.xml" value="0.25" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/event_recycler_layout.xml" value="0.1" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/fragment_about_us.xml" value="0.3625" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/fragment_contact_us.xml" value="0.1" />
@@ -26,6 +30,7 @@
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/item_option.xml" value="0.23148148148148148" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/menu.xml" value="0.3625" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/nav_header.xml" value="0.33" />
+        <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/otp_verification_layout.xml" value="0.264" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/layout/recycler_event_layout.xml" value="0.18541666666666667" />
         <entry key="..\:/Users/tanma/AndroidStudioProjects/IdeaLab/app/src/main/res/menu/menu.xml" value="0.33" />
       </map>

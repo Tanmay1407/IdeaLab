@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.lnct.ac.in.idealab" >
+    package="com.lnct.ac.in.idealab">
 
     <application
         android:allowBackup="true"
@@ -12,16 +12,18 @@
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.IdeaLab"
-        tools:targetApi="31" >
+        tools:targetApi="31">
+        <activity
+            android:name=".auth.RegisterActivity"
+            android:exported="false" />
         <activity
             android:name=".auth.StartActivity"
             android:exported="false"
-            android:screenOrientation="sensorPortrait"/>
+            android:screenOrientation="sensorPortrait" />
         <activity
             android:name=".auth.LoginActivity"
             android:exported="false"
-            android:screenOrientation="sensorPortrait">
-        </activity>
+            android:screenOrientation="sensorPortrait"></activity>
         <activity
             android:name=".activity.HomeActivity"
             android:exported="false"
@@ -30,7 +32,7 @@
             android:name=".activity.SplashScreen"
             android:exported="true"
             android:screenOrientation="sensorPortrait"
-            android:theme="@style/Theme.IdeaLab.Full" >
+            android:theme="@style/Theme.IdeaLab.Full">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
