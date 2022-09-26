@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bgColor"
-    tools:context=".frgments.AboutUs"
-    android:padding="10dp">
+    android:background="@color/bgColor1"
+    tools:context=".frgments.AboutUs">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbarSize="0dp">
@@ -22,12 +21,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:strokeWidth="2sp"
-                app:strokeColor="@color/blue"
+                app:cardElevation="10sp"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:cardCornerRadius="20sp"
-                android:layout_margin="10sp">
+                android:layout_margin="20sp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,11 +61,12 @@
                 android:layout_height="wrap_content"
                 app:strokeWidth="2sp"
                 app:strokeColor="@color/blue"
+                app:cardElevation="10sp"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/c1"
                 app:cardCornerRadius="20sp"
-                android:layout_margin="10sp">
+                android:layout_margin="20sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -107,12 +107,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:strokeWidth="2sp"
-                app:strokeColor="@color/blue"
+                app:cardElevation="10sp"
                 app:layout_constraintEnd_toStartOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/c2"
-                app:cardCornerRadius="20sp"
-                android:layout_margin="10sp">
+                android:layout_margin="20sp"
+                app:cardCornerRadius="20sp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -148,6 +148,6 @@
                 app:layout_constraintTop_toBottomOf="@id/c3"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </FrameLayout>
