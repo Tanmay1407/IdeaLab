@@ -9,8 +9,14 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
 import com.lnct.ac.`in`.idealab.R
+import com.lnct.ac.`in`.idealab.`interface`.login_finish
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity() , login_finish {
+    override fun finishLogin() {
+        finish()
+        finishAffinity()
+    }
+
     lateinit var collegeDropDown : AutoCompleteTextView
     lateinit var branchDropDown : AutoCompleteTextView
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +46,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun onClick(p0: View?) {
 //                finish()
 //                startActivity(Intent(this@RegisterActivity, StartActivity::class.java))
-                val otpVerificationDialog = OTPVerificationDialog(this@RegisterActivity,"user@gmail.com")
+                val otpVerificationDialog = OTPVerificationDialog(this@RegisterActivity,"user@gmail.com",this@RegisterActivity)
                 otpVerificationDialog.setCancelable(false)
                 otpVerificationDialog.show()
             }
