@@ -4,25 +4,23 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.lnct.ac.in.idealab.R;
-import com.lnct.ac.in.idealab.adapters.EventRecyclerAdapter;
+import com.lnct.ac.in.idealab.adapters.ProjectFragmentAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Event#newInstance} factory method to
+ * Use the {@link ProjectFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Event extends Fragment {
+public class ProjectFragment extends Fragment {
 
-    RecyclerView event_rv, past_event_rv;
+    RecyclerView project_rv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,7 +31,7 @@ public class Event extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public Event() {
+    public ProjectFragment() {
         // Required empty public constructor
     }
 
@@ -43,11 +41,11 @@ public class Event extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment EventFragment.
+     * @return A new instance of fragment ProjectFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static Event newInstance(String param1, String param2) {
-        Event fragment = new Event();
+    public static ProjectFragment newInstance(String param1, String param2) {
+        ProjectFragment fragment = new ProjectFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -67,20 +65,14 @@ public class Event extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_event, container, false);
+        View v = inflater.inflate(R.layout.fragment_project, container, false);;
 
-        EventRecyclerAdapter adapter = new EventRecyclerAdapter(getContext());
-        EventRecyclerAdapter past_adapter = new EventRecyclerAdapter(getContext());
+        project_rv = v.findViewById(R.id.project_rv);
+        ProjectFragmentAdapter adapter = new ProjectFragmentAdapter();
 
-        past_event_rv = view.findViewById(R.id.past_event_view);
-        past_event_rv.setAdapter(past_adapter);
-        past_event_rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        project_rv.setAdapter(adapter);
+        project_rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        event_rv = view.findViewById(R.id.event_view);
-        event_rv.setAdapter(adapter);
-        event_rv.setLayoutManager(new LinearLayoutManager(getActivity().getParent(), LinearLayoutManager.VERTICAL, false));
-//        mSnapHelper.attachToRecyclerView(event_rv);
-
-        return view;
+        return v;
     }
 }

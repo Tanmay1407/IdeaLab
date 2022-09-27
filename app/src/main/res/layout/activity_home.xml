@@ -8,7 +8,7 @@
     tools:openDrawer="start"
     android:id="@+id/nav_drawer"
     android:fitsSystemWindows="true"
-    android:background="@color/bgColor">
+    android:background="@color/gra">
 
     <include
         android:layout_width="match_parent"

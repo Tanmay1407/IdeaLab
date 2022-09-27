@@ -47,8 +47,7 @@
         <activity
             android:name=".activity.SplashScreen"
             android:exported="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.IdeaLab.Full">
+            android:screenOrientation="portrait">
 
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
