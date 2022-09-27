@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/white"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OTP Verification"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#CC000000"
+                android:textSize="25sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="#80000000"
+                android:text="We have sent verification code to."/>
+
+            <TextView
+                android:id="@+id/tvEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
+                android:textColor="#CC000000"
+                android:text="user@gmail.com"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:weightSum="4"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                >
+
+                <EditText
+                    android:id="@+id/otpET1"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue"/>
+
+                <EditText
+                    android:id="@+id/otpET2"
+                    android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue"/>
+
+                <EditText
+                    android:id="@+id/otpET3"
+                    android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="50dp"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue"/>
+
+                <EditText
+                    android:id="@+id/otpET4"
+                    android:layout_width="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_height="50dp"
+                    android:gravity="center"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textStyle="bold"
+                    android:textSize="30sp"
+                    android:textColor="#000000"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_back_blue"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/TVresend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resend Code"
+                android:textColor="#99000000"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/verifyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginBottom="20dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/round_back_brown"
+                android:layout_gravity="center"
+                android:text="Verify OTP"
+                android:textColor="#FFFFFF"
+                />
+
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
