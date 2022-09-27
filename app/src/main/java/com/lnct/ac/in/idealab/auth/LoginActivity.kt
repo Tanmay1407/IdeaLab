@@ -32,6 +32,13 @@ class LoginActivity : AppCompatActivity() {
             }
         })
 
+        findViewById<Button>(R.id.btnRegister).setOnClickListener(object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
+
+            }
+        })
+
     }
 
 

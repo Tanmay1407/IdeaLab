@@ -139,8 +139,6 @@
                 android:layout_gravity="center"
                 android:text="Verify OTP"
                 android:textColor="#FFFFFF"
-
-
                 />
 
 
