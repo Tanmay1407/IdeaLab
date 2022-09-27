@@ -57,6 +57,12 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder hold, int position) {
 
         ViewHolder2 holder = (ViewHolder2) hold;
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         //TODO set image in image view and uncomment next 2 lines
 //        holder.event_date.setText(event_list.get(position).getDate());

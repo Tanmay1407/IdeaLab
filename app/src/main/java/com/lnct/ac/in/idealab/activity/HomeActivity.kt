@@ -1,9 +1,12 @@
 package com.lnct.ac.`in`.idealab.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.FrameLayout
+import android.widget.ImageView
 import android.widget.Toast
 import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -27,6 +30,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var toolbar: androidx.appcompat.widget.Toolbar
     lateinit var navigationView: NavigationView
     lateinit var fm: FragmentManager
+    lateinit var linkeden_link: ImageView
+    lateinit var instagram_link: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,6 +42,8 @@ class HomeActivity : AppCompatActivity() {
         navigationView = findViewById(R.id.navigation_view)
         navigationView.itemIconTintList = null
         toolbar = findViewById(R.id.tool_bar)
+        linkeden_link = findViewById(R.id.linkedin_link)
+        instagram_link = findViewById(R.id.instagram_link)
 
        setSupportActionBar(toolbar)
 
@@ -72,6 +79,16 @@ class HomeActivity : AppCompatActivity() {
 
             }
         })
+
+        linkeden_link.setOnClickListener(View.OnClickListener { object : View.OnClickListener{
+            override fun onClick(p0: View?) {
+                var i : Intent
+
+            }
+        }
+
+        })
+
     }
 
     fun loadFragment(fragment: Fragment, fragName: String) {
