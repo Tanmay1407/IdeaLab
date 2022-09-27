@@ -7,9 +7,15 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.lnct.ac.`in`.idealab.R
+import com.lnct.ac.`in`.idealab.`interface`.login_finish
 import com.lnct.ac.`in`.idealab.activity.HomeActivity
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity() , login_finish {
+    override fun finishLogin() {
+        finish()
+        finishAffinity()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -23,9 +29,8 @@ class LoginActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.btnLogin).setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-//                finish()
-//                startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
-            val otpVerificationDialog = OTPVerificationDialog(this@LoginActivity,"user@gmail.com")
+
+            val otpVerificationDialog = OTPVerificationDialog(this@LoginActivity,"user@gmail.com",this@LoginActivity)
                 otpVerificationDialog.setCancelable(false)
                 otpVerificationDialog.show()
 

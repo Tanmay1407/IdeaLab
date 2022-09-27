@@ -17,6 +17,7 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:theme="@style/Theme.MaterialComponents.Light"
             android:layout_margin="10sp"
             app:cardCornerRadius="20sp"
             app:cardElevation="5sp">
