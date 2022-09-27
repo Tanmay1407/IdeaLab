@@ -21,6 +21,7 @@ import com.lnct.ac.`in`.idealab.frgments.AboutUs
 import com.lnct.ac.`in`.idealab.frgments.ContactUs
 import com.lnct.ac.`in`.idealab.frgments.Event
 import com.lnct.ac.`in`.idealab.frgments.HomeFragment
+import com.lnct.ac.`in`.idealab.frgments.ProjectFragment
 import com.lnct.ac.`in`.idealab.quiz.QuizWelcomeFragment
 
 class HomeActivity : AppCompatActivity() {
@@ -58,14 +59,12 @@ class HomeActivity : AppCompatActivity() {
                 val id = item.itemId
 
                 when(id){
-//                    R.id.home -> Toast.makeText(this@HomeActivity,"HOME",Toast.LENGTH_SHORT).show()
                     R.id.home -> loadFragment(HomeFragment(),"Home")
-//                    R.id.event -> Toast.makeText(this@HomeActivity,"Event",Toast.LENGTH_SHORT).show()
                     R.id.event -> loadFragment(Event(),"Events")
                     R.id.about -> loadFragment(AboutUs(),"About Us")
                     R.id.contact -> loadFragment(ContactUs(),"Contact Us")
                     R.id.highlights -> loadFragment(QuizWelcomeFragment(),"Quiz")
-                    R.id.projects -> Toast.makeText(this@HomeActivity,"Projects",Toast.LENGTH_SHORT).show()
+                    R.id.projects -> loadFragment(ProjectFragment(),"Projects")
                     else -> {}
 
                 }

@@ -70,8 +70,8 @@
             android:name=".activity.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.IdeaLab">
-
+            android:theme="@style/Theme.IdeaLab" >
+            
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
 

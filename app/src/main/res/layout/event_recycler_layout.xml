@@ -61,6 +61,16 @@
                     android:textSize="15sp"
                     android:textStyle="italic" />
 
+                <TextView
+                    android:id="@+id/event_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:text="Register -->"
+                    android:textColor="#3700FF"
+                    android:textSize="15sp"
+                    android:textStyle="italic" />
+
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
