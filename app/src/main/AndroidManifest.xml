@@ -38,6 +38,28 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".quiz.RightActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".quiz.ShowScoreActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".quiz.QuestionActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".quiz.WrongActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+
+
+
+        <activity
             android:name=".activity.HomeActivity"
             android:exported="true"
             android:theme="@style/Theme.IdeaLab"
@@ -48,7 +70,7 @@
             android:name=".activity.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.IdeaLab.Full">
+            android:theme="@style/Theme.IdeaLab">
 
              <intent-filter>
              <action android:name="android.intent.action.MAIN" />
