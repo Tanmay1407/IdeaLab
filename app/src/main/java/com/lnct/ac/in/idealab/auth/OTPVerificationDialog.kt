@@ -17,9 +17,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.`interface`.login_finish
+import com.lnct.ac.`in`.idealab.interfaces.login_finish
 import com.lnct.ac.`in`.idealab.activity.HomeActivity
 
 class OTPVerificationDialog(context : Context,var userEmail : String, val loginFinish : login_finish ) : Dialog(context) {

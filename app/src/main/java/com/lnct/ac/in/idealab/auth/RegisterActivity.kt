@@ -9,7 +9,7 @@ import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.ImageView
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.`interface`.login_finish
+import com.lnct.ac.`in`.idealab.interfaces.login_finish
 
 class RegisterActivity : AppCompatActivity() , login_finish {
     override fun finishLogin() {
