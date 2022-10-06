@@ -75,8 +75,7 @@ class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP 
 
                 if(resendEnabled){
 
-                    val otp = OTP(context)
-                    otp.sendOTP(userEmail,genOTP)
+
                     startCountDownTimer()
                 }
             }
@@ -89,6 +88,7 @@ class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP 
 
                 if(getOTP.length == 4 && getOTP.equals(genOTP)){
                     //Toast.makeText(context,getOTP,Toast.LENGTH_SHORT).show()
+
                     loginFinish.finishLogin()
                     context.startActivity(Intent(context, HomeActivity::class.java))
                 }
