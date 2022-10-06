@@ -7,53 +7,79 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lnct.ac.in.idealab.interfaces.CallBack;
+
+import org.json.JSONObject;
 
 import java.util.Map;
 
 public class VolleyRequest {
 
     Context c;
-    StringRequest request;
+    JsonObjectRequest request;
     CallBack mCallback;
-
-    VolleyRequest(Context c, CallBack mCallback) {
+    RequestQueue q;
+    public VolleyRequest(Context c, CallBack mCallback) {
         this.c = c;
         this.mCallback = mCallback;
+        q = Volley.newRequestQueue(c);
     }
 
 
-    public void postWithBody(String url, Map<String, String> map_body) {
+    public void postWithBody(String url, JSONObject body) {
 
-        request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                mCallback.responseCallback(response);
-                Log.i("-----response----", response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                mCallback.errorCallback(error.getMessage());
-                Log.i("-----error----", error.getMessage());
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return map_body;
-            }
-        };
+     request = new JsonObjectRequest(
+                Request.Method.POST,
+                // Using a variable for the domain is great for testing
+               url,
+                body
+                ,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        mCallback.responseCallback(response);
 
-        Toast.makeText(c, "volley started", Toast.LENGTH_SHORT).show();
-        
-        RequestQueue q = Volley.newRequestQueue(c);
+                    }
+                },
+
+                new Response.ErrorListener(){
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        mCallback.errorCallback(error);
+
+                    }
+                }
+
+                )
+
+     {
+         @Override
+         protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+             mCallback.responseStatus(response);
+             return super.parseNetworkResponse(response);
+         }
+
+
+     };
+
+
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(
+                0,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+
         q.add(request);
 
     }

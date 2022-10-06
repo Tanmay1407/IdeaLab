@@ -8,7 +8,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.textfield.TextInputEditText
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.`interface`.login_finish
+import com.lnct.ac.`in`.idealab.`interfaces`.login_finish
 import java.util.*
 import kotlin.collections.ArrayList
 
