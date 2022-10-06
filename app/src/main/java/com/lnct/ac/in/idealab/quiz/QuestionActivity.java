@@ -113,10 +113,12 @@ public class QuestionActivity extends AppCompatActivity {
 
             rightAnswer = q.getRightAnswer();
         } else {
+            countDownTimer.cancel();
             Intent intent = new Intent(this, ShowScoreActivity.class);
             intent.putExtra("score", score);
-            startActivity(intent);
             finish();
+            startActivity(intent);
+
         }
     }
 

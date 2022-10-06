@@ -22,7 +22,7 @@ import com.lnct.ac.`in`.idealab.R
 import com.lnct.ac.`in`.idealab.`interface`.login_finish
 import com.lnct.ac.`in`.idealab.activity.HomeActivity
 
-class OTPVerificationDialog(context : Context,var userEmail : String, val loginFinish : login_finish ) : Dialog(context) {
+class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP : String, val loginFinish : login_finish ) : Dialog(context) {
 
     lateinit var otpET1 : EditText
     lateinit var otpET2 : EditText
@@ -35,6 +35,7 @@ class OTPVerificationDialog(context : Context,var userEmail : String, val loginF
     var resendTime : Long = 60 // Resend OTP time
     var resendEnabled = false
     var selectedETPosition = 0
+
 
 
 
@@ -75,8 +76,8 @@ class OTPVerificationDialog(context : Context,var userEmail : String, val loginF
 
                 if(resendEnabled){
 
-                    // Resend code here . . .
-
+                    val otp = OTP(context)
+                    otp.sendOTP(userEmail,genOTP)
                     startCountDownTimer()
                 }
             }
@@ -84,15 +85,16 @@ class OTPVerificationDialog(context : Context,var userEmail : String, val loginF
 
         verifyBtn.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                loginFinish.finishLogin()
+
             var getOTP = otpET1.text.toString()+otpET2.text.toString()+otpET3.text.toString()+otpET4.text.toString()
 
-                if(getOTP.length == 4){
-                    // Verification code here . . .
-
-                    Toast.makeText(context,getOTP,Toast.LENGTH_SHORT).show()
+                if(getOTP.length == 4 && getOTP.equals(genOTP)){
+                    //Toast.makeText(context,getOTP,Toast.LENGTH_SHORT).show()
+                    loginFinish.finishLogin()
                     context.startActivity(Intent(context, HomeActivity::class.java))
-
+                }
+                else{
+                    Toast.makeText(context,"Invaild OTP",Toast.LENGTH_SHORT).show()
                 }
 
             }
