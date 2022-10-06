@@ -14,7 +14,7 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputEditText
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.`interface`.login_finish
+import com.lnct.ac.`in`.idealab.`interfaces`.login_finish
 import com.lnct.ac.`in`.idealab.activity.HomeActivity
 
 class LoginActivity : AppCompatActivity() , login_finish{

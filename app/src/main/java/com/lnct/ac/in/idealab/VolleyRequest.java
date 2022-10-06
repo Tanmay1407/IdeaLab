@@ -7,10 +7,13 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lnct.ac.in.idealab.interfaces.CallBack;
@@ -29,7 +32,13 @@ public class VolleyRequest {
     }
 
 
-    public void postWithBody(String url, Map<String, String> map_body) {
+    public boolean postWithBody(String url, Map<String, String> map_body) {
+
+        if(!Utils.getInstance().isNetworkAvailable(c)) {
+            Log.i("===volley request---", "no network available");
+            Toast.makeText(c, "No network available", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -55,6 +64,8 @@ public class VolleyRequest {
         
         RequestQueue q = Volley.newRequestQueue(c);
         q.add(request);
+
+        return true;
 
     }
 
