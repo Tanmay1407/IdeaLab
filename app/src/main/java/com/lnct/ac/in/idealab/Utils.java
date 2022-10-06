@@ -3,11 +3,14 @@ package com.lnct.ac.in.idealab;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import java.io.File;
 
 public class Utils {
 
@@ -17,8 +20,7 @@ public class Utils {
 
     }
 
-    public static Utils getInstance(Context context) {
-//        util.c = context;
+    public static Utils getInstance() {
         return util;
     }
 
@@ -32,7 +34,6 @@ public class Utils {
 
     public static boolean hasStoragePermission(Context c) {
         if(ContextCompat.checkSelfPermission(c, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-//            ActivityCompat.requestPermissions((Activity)c, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 101);
             return false;
         }
         if(ContextCompat.checkSelfPermission(c, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -48,6 +49,23 @@ public class Utils {
         if(ContextCompat.checkSelfPermission(c, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity)c, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 101);
         }
+    }
+
+    public static File getDataDir(Context c) {
+        return c.getDataDir();
+    }
+
+    public static SharedPreferences getPrefs(Context c) {
+        return c.getSharedPreferences("data", Context.MODE_PRIVATE);
+    }
+
+    public static SharedPreferences.Editor getPrefsEditor(Context c) {
+        return c.getSharedPreferences("data", Context.MODE_PRIVATE).edit();
+    }
+
+    public static void createDataFile(Context c) {
+        File root = getDataDir(c);
+        //TODO incomplete
     }
 
 }
