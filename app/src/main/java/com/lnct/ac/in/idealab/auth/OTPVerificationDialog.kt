@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.WindowManager
@@ -17,9 +18,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.android.volley.NetworkResponse
+import com.android.volley.VolleyError
+import com.lnct.ac.`in`.idealab.Constants
 import com.lnct.ac.`in`.idealab.R
+import com.lnct.ac.`in`.idealab.VolleyRequest
 import com.lnct.ac.`in`.idealab.interfaces.login_finish
 import com.lnct.ac.`in`.idealab.activity.HomeActivity
+import com.lnct.ac.`in`.idealab.interfaces.CallBack
+import org.json.JSONObject
 
 class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP : String, val loginFinish : login_finish ) : Dialog(context) {
 
@@ -34,6 +41,7 @@ class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP 
     var resendTime : Long = 60 // Resend OTP time
     var resendEnabled = false
     var selectedETPosition = 0
+    val TAG = "OTPVerificationDialog"
 
 
 
@@ -74,7 +82,25 @@ class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP 
             override fun onClick(p0: View?) {
 
                 if(resendEnabled){
+                    val request = VolleyRequest(context, object : CallBack {
+                        override fun responseCallback(response: JSONObject?) {
+                            Log.d(TAG,response.toString())
+                        }
 
+                        override fun errorCallback(error_message: VolleyError?) {
+                            Log.d(TAG,"ERROR : "+error_message.toString())
+                        }
+
+                        override fun responseStatus(response_code: NetworkResponse?) {
+                            Log.d(TAG,"RESPONCE_CODE : "+response_code?.statusCode.toString())
+                        }
+                    })
+                    val bodyData = JSONObject()
+                    bodyData.put("email",userEmail)
+                    bodyData.put("otp",genOTP)
+
+                    Log.d(TAG, Constants.URL_SEND_OTP)
+                    request.postWithBody(Constants.URL_SEND_OTP,bodyData)
 
                     startCountDownTimer()
                 }

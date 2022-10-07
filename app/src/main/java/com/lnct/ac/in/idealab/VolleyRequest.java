@@ -40,53 +40,52 @@ public class VolleyRequest {
 
 
     public void postWithBody(String url, JSONObject body) {
-
-     request = new JsonObjectRequest(
-                Request.Method.POST,
-                // Using a variable for the domain is great for testing
+   if( Utils.isNetworkAvailable(c)) {
+       request = new JsonObjectRequest(
+               Request.Method.POST,
+               // Using a variable for the domain is great for testing
                url,
-                body
-                ,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        mCallback.responseCallback(response);
+               body
+               ,
+               new Response.Listener<JSONObject>() {
+                   @Override
+                   public void onResponse(JSONObject response) {
+                       mCallback.responseCallback(response);
 
-                    }
-                },
+                   }
+               },
 
-                new Response.ErrorListener(){
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        mCallback.errorCallback(error);
+               new Response.ErrorListener() {
+                   @Override
+                   public void onErrorResponse(VolleyError error) {
+                       mCallback.errorCallback(error);
 
-                    }
-                }
+                   }
+               }
 
-                )
-
-     {
-         @Override
-         protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
-             mCallback.responseStatus(response);
-             return super.parseNetworkResponse(response);
-         }
+       ) {
+           @Override
+           protected Response<JSONObject> parseNetworkResponse(NetworkResponse response) {
+               mCallback.responseStatus(response);
+               return super.parseNetworkResponse(response);
+           }
 
 
-     };
+       };
 
 
-        request.setRetryPolicy(
-                new DefaultRetryPolicy(
-                0,
-                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
-        ));
+       request.setRetryPolicy(
+               new DefaultRetryPolicy(
+                       0,
+                       DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                       DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+               ));
 
 
-        q.add(request);
-
-        return true;
+       q.add(request);
+   }else{
+       Toast.makeText(c,"No Internet Connection",Toast.LENGTH_LONG).show();
+   }
 
     }
 
