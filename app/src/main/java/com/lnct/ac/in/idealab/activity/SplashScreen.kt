@@ -4,12 +4,16 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.lnct.ac.`in`.idealab.auth.StartActivity
+import com.lnct.ac.`in`.idealab.Models.User
 import com.lnct.ac.`in`.idealab.R
+import com.lnct.ac.`in`.idealab.Utils
+import com.lnct.ac.`in`.idealab.auth.LoginActivity
+import org.json.JSONObject
 
 class SplashScreen : AppCompatActivity() {
     lateinit var logoImg : ImageView
@@ -20,13 +24,24 @@ class SplashScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+
         logoImg = findViewById(R.id.launch_image)
         tv2 = findViewById(R.id.tv2)
         icon_holder = findViewById(R.id.icon_holder)
 
         Handler().postDelayed({
+
+            if(Utils.getPrefs(this).getString("USER","").equals("")){
+                finish()
+                startActivity(Intent(this@SplashScreen, LoginActivity::class.java))
+            }
+            else {
+
             finish()
-            startActivity(Intent(this@SplashScreen, StartActivity::class.java))
+            startActivity(Intent(this@SplashScreen, HomeActivity::class.java))}
+
+
+
 
         },2500
 
