@@ -28,7 +28,7 @@ import com.lnct.ac.`in`.idealab.activity.HomeActivity
 import com.lnct.ac.`in`.idealab.interfaces.CallBack
 import org.json.JSONObject
 
-class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP : String, val loginFinish : login_finish ) : Dialog(context) {
+class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP : String,val isUser : Boolean, val loginFinish : login_finish ) : Dialog(context) {
 
     lateinit var otpET1 : EditText
     lateinit var otpET2 : EditText
@@ -114,9 +114,16 @@ class OTPVerificationDialog(context : Context,var userEmail : String,val genOTP 
 
                 if(getOTP.length == 4 && getOTP.equals(genOTP)){
                     //Toast.makeText(context,getOTP,Toast.LENGTH_SHORT).show()
-
-                    loginFinish.finishLogin()
-                    context.startActivity(Intent(context, HomeActivity::class.java))
+                    if(isUser) {
+                        loginFinish.finishLogin()
+                        context.startActivity(Intent(context, HomeActivity::class.java))
+                    }else{
+                        loginFinish.finishLogin()
+                        Toast.makeText(context, "Please register first!", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(context,RegisterActivity::class.java)
+                        intent.putExtra("EMAIL",userEmail)
+                        context.startActivity(intent)
+                    }
                 }
                 else{
                     Toast.makeText(context,"Invaild OTP",Toast.LENGTH_SHORT).show()

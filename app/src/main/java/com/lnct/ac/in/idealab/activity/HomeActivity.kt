@@ -5,10 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
-import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toolbar
+import android.widget.*
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -16,13 +13,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
+import com.lnct.ac.`in`.idealab.Models.User
 import com.lnct.ac.`in`.idealab.R
+import com.lnct.ac.`in`.idealab.Utils
 import com.lnct.ac.`in`.idealab.frgments.AboutUs
 import com.lnct.ac.`in`.idealab.frgments.ContactUs
 import com.lnct.ac.`in`.idealab.frgments.Event
 import com.lnct.ac.`in`.idealab.frgments.HomeFragment
 import com.lnct.ac.`in`.idealab.frgments.ProjectFragment
 import com.lnct.ac.`in`.idealab.quiz.QuizWelcomeFragment
+import org.json.JSONObject
 
 class HomeActivity : AppCompatActivity() {
 
@@ -33,6 +33,8 @@ class HomeActivity : AppCompatActivity() {
     lateinit var fm: FragmentManager
     lateinit var linkeden_link: ImageView
     lateinit var instagram_link: ImageView
+    lateinit var user : User
+    var isUser  = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,7 +54,15 @@ class HomeActivity : AppCompatActivity() {
         drawerLayout.addDrawerListener(toggle)
 
         toggle.syncState()
+
         loadFragment(HomeFragment(),"Home")
+//
+//        if(Utils.isUserPresent(this)) {
+////            user = Utils.convertToUserObj(JSONObject(Utils.getPrefs(this).getString("USER", "{}")))
+//  //          findViewById<TextView>(R.id.user_name_nav).text = user.name
+//        }
+
+
 
         navigationView.setNavigationItemSelectedListener(object : NavigationView.OnNavigationItemSelectedListener{
             override fun onNavigationItemSelected(item: MenuItem): Boolean {
