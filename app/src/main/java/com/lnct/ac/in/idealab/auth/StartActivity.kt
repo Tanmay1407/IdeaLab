@@ -3,40 +3,33 @@ package com.lnct.ac.`in`.idealab.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
+import android.widget.Toast
+import androidx.cardview.widget.CardView
+import com.android.volley.NetworkResponse
+import com.android.volley.VolleyError
+import com.google.android.material.textfield.TextInputEditText
+import com.lnct.ac.`in`.idealab.Constants
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.activity.HomeActivity
+
+
+
+
+// THIS IS DUMMY ACTIVITY WHICH NOT IN USE //
+
 
 class StartActivity : AppCompatActivity() {
-    lateinit var loginButton: Button
-    lateinit var registerButton: Button
+    lateinit var loginButton: CardView
+    lateinit var userEmail : TextInputEditText
+
+    val TAG = "StartActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+//        setContentView(R.layout.activity_start)
 
-        loginButton = findViewById(R.id.btnLogin)
-        registerButton = findViewById(R.id.btnRegister)
-
-        loginButton.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                finish()
-                startActivity(Intent(this@StartActivity,LoginActivity::class.java))
-            }
-        })
-
-        registerButton.setOnClickListener(object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                finish()
-                startActivity(Intent(this@StartActivity,RegisterActivity::class.java))
-            }
-        })
-
-        findViewById<Button>(R.id.btnSkip).setOnClickListener(object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                finish()
-                startActivity(Intent(this@StartActivity,HomeActivity::class.java))
-            }
-        })
     }
 }

@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
+import androidx.cardview.widget.CardView
 import com.android.volley.NetworkResponse
 import com.android.volley.Request
 import com.android.volley.Response
@@ -34,67 +32,61 @@ class LoginActivity : AppCompatActivity() , login_finish{
     var RES_CODE = -1
     lateinit var user : JSONObject
     var isUser = false
-    lateinit var loginButton: Button
+    lateinit var loginButton: CardView
     lateinit var loading : LinearLayout
 
     override fun finishLogin() {
         otpVerificationDialog.dismiss()
         finish()
         finishAffinity()
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_start)
 
         userEmail = findViewById(R.id.evEmail)
         loading  = findViewById(R.id.loading)
         loginButton = findViewById(R.id.btnLogin)
-
-        findViewById<ImageView>(R.id.back_btn).setOnClickListener(object : View.OnClickListener{
+        
+        findViewById<TextView>(R.id.btnSkip).setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
+                Toast.makeText(this@LoginActivity, "Welcome! to AICTE Idea Lab", Toast.LENGTH_SHORT).show()
+                startActivity(Intent(this@LoginActivity,HomeActivity::class.java))
                 finish()
-                startActivity(Intent(this@LoginActivity,StartActivity::class.java))
             }
         })
 
+
        loginButton.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-
                 val email = userEmail.text.toString().trim()
                 Log.d(TAG,email)
-
                 if(isValidString(email)) {
 
                    val request = VolleyRequest(this@LoginActivity, object : CallBack{
                        override fun responseCallback(response: JSONObject) {
 
                             if(response.has("success")) {
+
                                 if((response.get("success") as JSONObject).has("user")){
                                     isUser = true
                                     user = ((response.get("success") as JSONObject).get("user") ) as JSONObject
+                                    Utils.saveUser(this@LoginActivity,Utils.convertToUserObj(user))
 
-
-
-                                    otpVerificationDialog = OTPVerificationDialog(
-                                        this@LoginActivity,
-                                        email,
-                                        genOTP,
-                                        this@LoginActivity
-                                    )
-                                    otpVerificationDialog.setCancelable(false)
-
-
-                                    otpVerificationDialog.show()
-
-                                }else {
-                                    isUser  = false
-                                    Toast.makeText(this@LoginActivity, "Please register first!", Toast.LENGTH_SHORT).show()
-                                    startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
-                                    finish()
                                 }
+
+
+                                otpVerificationDialog = OTPVerificationDialog(
+                                    this@LoginActivity,
+                                    email,
+                                    genOTP,
+                                    isUser,
+                                    this@LoginActivity
+                                )
+                                otpVerificationDialog.setCancelable(false)
+                                otpVerificationDialog.show()
+
                             }
 
 
@@ -136,14 +128,9 @@ class LoginActivity : AppCompatActivity() , login_finish{
             }
         })
 
-        findViewById<Button>(R.id.btnRegister).setOnClickListener(object : View.OnClickListener{
-            override fun onClick(p0: View?) {
-                startActivity(Intent(this@LoginActivity,RegisterActivity::class.java))
-
-            }
-        })
 
     }
+
 
     fun generateOTP(): String {
         val randomPin = (Math.random() * 9000).toInt() + 1000
@@ -162,6 +149,7 @@ class LoginActivity : AppCompatActivity() , login_finish{
     fun isValidString(str: String): Boolean{
         return EMAIL_ADDRESS_PATTERN.matcher(str).matches()
     }
+
 
 
 }

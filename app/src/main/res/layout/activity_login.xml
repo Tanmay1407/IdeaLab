@@ -32,7 +32,7 @@
             android:textAllCaps="true"
             android:textColor="@color/blue"
             android:textSize="40sp"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -75,13 +75,13 @@
                 android:layout_marginTop="10dp">
 
                 <CheckBox
+                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Widget.AppCompat.CompoundButton.CheckBox"
-                    android:text="Remember Me"
-                    android:buttonTint="@color/blue"
-                    android:textColor="@color/black"
                     android:layout_centerVertical="true"
+                    android:buttonTint="@color/blue"
+                    android:text="Remember Me"
+                    android:textColor="@color/black"
 
                     />
 

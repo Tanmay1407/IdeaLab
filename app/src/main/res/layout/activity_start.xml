@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.StartActivity"
+    tools:context=".auth.LoginActivity"
     android:background="@color/bgColor"
     android:padding="30dp"
     android:scrollbarSize="0dp">
@@ -13,7 +13,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_gravity="center">
 
         <ImageView
             android:layout_width="match_parent"
@@ -21,11 +22,36 @@
             android:layout_gravity="center"
             android:src="@drawable/app_img" />
 
+        <LinearLayout
+            android:id="@+id/loading"
+            android:visibility="gone"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center"
+            android:gravity="center">
+
+            <com.airbnb.lottie.LottieAnimationView
+                android:id="@+id/animation_view"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+
+                app:lottie_rawRes="@raw/loading"
+
+                app:lottie_loop="true"
+
+                app:lottie_autoPlay="true" />
+
+
+
+        </LinearLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="120dp"
+            android:layout_marginTop="80dp"
             android:fontFamily="@font/muli_bold"
             android:text="Idea Lab"
             android:textAllCaps="true"
@@ -47,45 +73,81 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_gravity="center">
 
-            <Button
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Email"
+                app:hintTextColor="@color/black"
+                app:boxStrokeColor="@color/blue"
+                app:boxStrokeWidthFocused="2dp"
+                app:startIconDrawable="@drawable/email_icon"
+                app:startIconTint="@color/blue"
+                app:endIconMode="clear_text"
+                app:endIconTint="@color/blue"
+                android:layout_marginTop="10dp"
+                android:textColorHint="#808080"
+
+
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/evEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fontFamily="@font/muli_bold"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.cardview.widget.CardView
                 android:id="@+id/btnLogin"
-                android:layout_width="0dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_weight="1"
-                android:text="Login"
-                android:backgroundTint="@color/blue"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-
-                />
-
-            <Button
-                android:id="@+id/btnRegister"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:text="Register"
-                android:backgroundTint="@color/blue"
-                android:textColor="@color/white"
-                android:textStyle="bold"/>
+                android:layout_marginRight="10dp"
+                android:background="#EDEEF3"
+                app:cardCornerRadius="20dp"
+                android:elevation="20dp"
+                android:layout_marginBottom="10dp"
+                >
+
+                <ImageView
+                    android:padding="15dp"
+                    android:id="@+id/imvNext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/next"
+
+                    />
+
+
+
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/btnSkip"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skip Login"
+                android:padding="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btnSkip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="#00000000"
-            android:text="Skip Login ?"
-            android:textColor="@color/black" />
+
 
     </LinearLayout>
 
