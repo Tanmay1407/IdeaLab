@@ -10,6 +10,7 @@ public class Constants {
     public static String BASE_URL = "https://idealablnct.herokuapp.com/api/";
     public static String URL_SEND_OTP = BASE_URL+"auth/sendOtp";
     public static String URL_EVENTS = BASE_URL + "event/getAll";
+    public static String URL_CREATE_USER = BASE_URL+"users/create";
 
     public static ArrayList<EventModel> event_list;
 }
