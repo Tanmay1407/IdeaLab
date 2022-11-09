@@ -2,14 +2,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/bgColor1"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/mainview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_margin="20sp"
+        android:layout_marginVertical="20sp"
+        android:layout_marginHorizontal="10sp"
         app:cardCornerRadius="20sp"
-        app:cardElevation="5sp"
+        app:strokeWidth="1sp"
+        app:strokeColor="@color/gra"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,20 +27,22 @@
             <ImageView
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/event_image"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_height="0dp"
+                android:src="@drawable/error"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
+                android:id="@+id/linearLayout3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray"
+                android:background="#6F8991"
                 android:gravity="bottom"
                 android:orientation="vertical"
                 android:padding="10sp"
+                android:paddingStart="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
@@ -45,9 +51,9 @@
                     android:id="@+id/event_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Title: This is Title Space. Please addd your title here"
                     android:ellipsize="marquee"
                     android:maxLines="1"
+                    android:text="Error"
                     android:textColor="@color/white"
                     android:textSize="22sp"
                     android:textStyle="bold" />
@@ -56,7 +62,6 @@
                     android:id="@+id/event_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="date field"
                     android:textColor="@color/white"
                     android:textSize="15sp"
                     android:textStyle="italic" />
@@ -65,11 +70,11 @@
                     android:id="@+id/event_register"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textAlignment="viewEnd"
-                    android:text="Register -->"
-                    android:textColor="#3700FF"
-                    android:textSize="15sp"
-                    android:textStyle="italic" />
+                    android:text="Registrations open"
+                    android:visibility="gone"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -77,12 +82,12 @@
 
     </com.google.android.material.card.MaterialCardView>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:layout_width="match_parent"
-        android:layout_height="3sp"
-        android:orientation="horizontal"
-        android:layout_marginHorizontal="20sp"
-        android:background="@color/dark_blue"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+<!--    <com.google.android.material.divider.MaterialDivider-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1sp"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_marginHorizontal="20sp"-->
+<!--        android:background="@color/dark_blue"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

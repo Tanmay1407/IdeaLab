@@ -6,11 +6,13 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
+import android.util.Log;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.io.File;
+import java.io.IOException;
 
 public class Utils {
 
@@ -65,7 +67,18 @@ public class Utils {
 
     public static void createDataFile(Context c) {
         File root = getDataDir(c);
-        //TODO incomplete
+    }
+
+    public static void createImageCacheDir(Context c) throws IOException {
+        File f = new File(c.getCacheDir(), File.separator + "event_image");
+        Log.i("image cache file----", f.getAbsolutePath());
+        if(!f.exists()) {
+            f.mkdir();
+        }
+    }
+
+    public static File getImageCacheDir(Context c) {
+        return new File(c.getCacheDir()+File.separator+"event_image");
     }
 
 }

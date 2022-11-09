@@ -1,15 +1,13 @@
 package com.lnct.ac.`in`.idealab.activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.ImageView
-import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -17,11 +15,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.google.android.material.navigation.NavigationView
 import com.lnct.ac.`in`.idealab.R
-import com.lnct.ac.`in`.idealab.frgments.AboutUs
-import com.lnct.ac.`in`.idealab.frgments.ContactUs
-import com.lnct.ac.`in`.idealab.frgments.Event
-import com.lnct.ac.`in`.idealab.frgments.HomeFragment
-import com.lnct.ac.`in`.idealab.frgments.ProjectFragment
+import com.lnct.ac.`in`.idealab.frgments.*
 import com.lnct.ac.`in`.idealab.quiz.QuizWelcomeFragment
 
 class HomeActivity : AppCompatActivity() {
@@ -92,10 +86,30 @@ class HomeActivity : AppCompatActivity() {
 
     fun loadFragment(fragment: Fragment, fragName: String) {
         toolbar.title = fragName
-//        val fm : FragmentManager = supportFragmentManager;
-        fm = supportFragmentManager
+        val fm : FragmentManager = supportFragmentManager;
+//        fm = supportFragmentManager
         val ft : FragmentTransaction = fm.beginTransaction()
 
+        val currentFragment: Fragment? = getSupportFragmentManager().findFragmentById(R.id.container)
+
+//        val fragmentManager: FragmentManager = getSupportFragmentManager()
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+//            if (currentFragment != null) {
+//                fragmentManager.beginTransaction().detach(currentFragment).commitNow()
+//            }
+//            if (fragment != null) {
+//                fragmentManager.beginTransaction().attach(fragment).commitNow()
+//            }
+//        } else {
+//            if (currentFragment != null) {
+//                fragmentManager.beginTransaction().detach(currentFragment).attach(fragment)
+//                    .commit()
+//            }
+//        }
+
+        if (currentFragment != null) {
+            ft.remove(currentFragment)
+        }
         ft.add(R.id.container,fragment)
         ft.commit()
     }

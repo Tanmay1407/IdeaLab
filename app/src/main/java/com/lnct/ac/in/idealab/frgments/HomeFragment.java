@@ -2,28 +2,41 @@ package com.lnct.ac.in.idealab.frgments;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
+import androidx.core.widget.NestedScrollView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.VideoView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.lnct.ac.in.idealab.Constants;
 import com.lnct.ac.in.idealab.R;
+import com.lnct.ac.in.idealab.Utils;
+import com.lnct.ac.in.idealab.VolleyRequest;
 import com.lnct.ac.in.idealab.adapters.HomeGalleryAdapter;
 import com.lnct.ac.in.idealab.adapters.HomeUpcomingEventAdapter;
+import com.lnct.ac.in.idealab.interfaces.CallBack;
+import com.lnct.ac.in.idealab.models.EventModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -37,7 +50,9 @@ public class HomeFragment extends Fragment {
     VideoView video_view;
     View view;
     RecyclerView gallery_view, event_view;
-    TextView pos_tv, pos_tv_gallery;
+    TextView pos_tv, pos_tv_gallery, refresh_btn;
+    CardView nonet;
+    NestedScrollView mainview;
 
     HomeUpcomingEventAdapter event_adapter;
     HomeGalleryAdapter gallery_adapter;
@@ -45,7 +60,10 @@ public class HomeFragment extends Fragment {
 
     SnapHelper snap_helper, snap_helper2;
     ArrayList<String> uri_list;
+    ArrayList<EventModel> upcoming_event_list;
     int cur_pos_event, cur_pos_gallery, next_pos_event;
+
+    AlertDialog dialog;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -90,6 +108,25 @@ public class HomeFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        if(Utils.isNetworkAvailable(getContext())) {
+            nonet.setVisibility(View.GONE);
+            upcoming_event_list = new ArrayList<>();
+
+//            dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
+//                    .setTitle("Please Wait")
+//                    .setCancelable(false)
+//                    .setMessage("Loading data").create();
+//
+//            dialog.show();
+//            mainview.setVisibility(View.VISIBLE);
+        }
+        else {
+            if(dialog != null && dialog.isShowing()) dialog.dismiss();
+            nonet.setVisibility(View.VISIBLE);
+//            mainview.setVisibility(View.GONE);
+        }
+
         video_view.start();
 //        scroll_recycler_gallery();
         scroll_recycler_event();
@@ -105,6 +142,9 @@ public class HomeFragment extends Fragment {
 
         pos_tv = view.findViewById(R.id.pos_tv);
         pos_tv_gallery = view.findViewById(R.id.pos_tv_gallery);
+        nonet = view.findViewById(R.id.nonet);
+        mainview = view.findViewById(R.id.mainview);
+        refresh_btn = view.findViewById(R.id.refresh_btn);
 
         video_view = view.findViewById(R.id.video_view);
         video_view.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
@@ -132,7 +172,7 @@ public class HomeFragment extends Fragment {
         gallery_view.setAdapter(gallery_adapter);
 
 
-        event_adapter = new HomeUpcomingEventAdapter();
+        event_adapter = new HomeUpcomingEventAdapter(new ArrayList<>(), getContext());
         event_view = view.findViewById(R.id.upcoming_events_view);
         event_view.setLayoutManager(event_manager);
         event_view.setAdapter(event_adapter);
@@ -144,6 +184,14 @@ public class HomeFragment extends Fragment {
 //                cur_pos_event = event_manager.findLastCompletelyVisibleItemPosition();
 //            }
 //        });
+
+        dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
+                .setView(getLayoutInflater().inflate(R.layout.dialog_layout, null))
+                .setTitle("Please Wait")
+                .setCancelable(false)
+                .setMessage("Loading data").create();
+
+        dialog.show();
 
         gallery_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -170,6 +218,30 @@ public class HomeFragment extends Fragment {
                     else sb.append("| ");
                 }
                 pos_tv.setText(sb.toString().trim());
+            }
+        });
+
+        fetchAndLoadEvents();
+        refresh_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.container);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    fragmentManager.beginTransaction().detach(currentFragment).commitNow();
+                    fragmentManager.beginTransaction().attach(currentFragment).commitNow();
+                } else {
+                    fragmentManager.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
+                }
+
+//                Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.container);
+//
+//                if (currentFragment instanceof HomeFragment) {
+//                    FragmentTransaction fragTransaction =   (getActivity()).getSupportFragmentManager().beginTransaction();
+//                    fragTransaction.detach(currentFragment);
+//                    fragTransaction.attach(currentFragment);
+//                    fragTransaction.commit();
+//                }
             }
         });
 
@@ -235,7 +307,7 @@ public class HomeFragment extends Fragment {
     private void scroll_recycler_event() {
         new Thread(new Runnable() {
             @Override
-            public void run() {
+            synchronized public void run() {
 
                 for(; true; ) {
 //                    getActivity().runOnUiThread(new Runnable() {
@@ -262,6 +334,47 @@ public class HomeFragment extends Fragment {
 
             }
         }).start();
+    }
+
+    private void fetchAndLoadEvents() {
+        VolleyRequest request = new VolleyRequest(getContext(), new CallBack() {
+            @Override
+            public void responseCallback(JSONObject response) {
+                Log.i("-----on res home frag-----", response.toString());
+                try {
+                    JSONArray sucess = response.getJSONArray("success");
+                    ArrayList<EventModel> tmp_list = new ArrayList<>();
+                    for(int i=0; i<sucess.length(); i++) {
+                        EventModel model = EventModel.objToEventModel(sucess.getJSONObject(i));
+                        tmp_list.add(model);
+                        if(!model.isPast_event()) {
+                            upcoming_event_list.add(model);
+                        }
+                    }
+                    Log.i("length_arraylistt", upcoming_event_list.size()+"");
+                    if(dialog != null && dialog.isShowing()) dialog.dismiss();
+                    event_adapter.updateView(upcoming_event_list);
+//                    event_adapter = new HomeUpcomingEventAdapter(upcoming_event_list, getContext());
+//                    event_view.setAdapter(event_adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void errorCallback(VolleyError error_message) {
+                Log.i("-----error home frag-----", error_message.getMessage());
+                if(dialog != null && dialog.isShowing()) dialog.dismiss();
+            }
+
+            @Override
+            public void responseStatus(NetworkResponse response_code) {
+                Log.i("-----response status home frag-----", response_code.statusCode+"");
+            }
+        });
+
+        request.getRequest(Constants.URL_EVENTS);
+
     }
 
 }

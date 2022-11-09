@@ -13,7 +13,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@color/white"
+            android:background="@color/bgColor1"
             android:id="@+id/tool_bar"
             app:titleTextColor="@color/dark_blue"
             app:popupTheme="@style/AppTheme.popUpOverlay"

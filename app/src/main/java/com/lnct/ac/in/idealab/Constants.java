@@ -1,8 +1,15 @@
 package com.lnct.ac.in.idealab;
 
+import com.lnct.ac.in.idealab.models.EventModel;
+
+import java.util.ArrayList;
+
 public class Constants {
     public static String idaelab_mail = "idealab@lnct.ac.in";
     public static String playstore_link = "";
-    public static String BASE_URL = "http://192.168.0.105:5000/";
-    public static String URL_SEND_OTP = BASE_URL+"api/auth/sendOtp";
+    public static String BASE_URL = "https://idealablnct.herokuapp.com/api/";
+    public static String URL_SEND_OTP = BASE_URL+"auth/sendOtp";
+    public static String URL_EVENTS = BASE_URL + "event/getAll";
+
+    public static ArrayList<EventModel> event_list;
 }

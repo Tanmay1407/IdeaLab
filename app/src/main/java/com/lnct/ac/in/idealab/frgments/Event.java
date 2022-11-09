@@ -1,19 +1,38 @@
 package com.lnct.ac.in.idealab.frgments;
 
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.SnapHelper;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.VolleyError;
+import com.lnct.ac.in.idealab.Constants;
 import com.lnct.ac.in.idealab.R;
+import com.lnct.ac.in.idealab.Utils;
+import com.lnct.ac.in.idealab.VolleyRequest;
 import com.lnct.ac.in.idealab.adapters.EventRecyclerAdapter;
+import com.lnct.ac.in.idealab.interfaces.CallBack;
+import com.lnct.ac.in.idealab.models.EventModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,6 +42,14 @@ import com.lnct.ac.in.idealab.adapters.EventRecyclerAdapter;
 public class Event extends Fragment {
 
     RecyclerView event_rv, past_event_rv;
+    AlertDialog dialog;
+    CardView nonet;
+    TextView refresh_btn;
+
+    ArrayList<EventModel> past_ev_list;
+    ArrayList<EventModel> upcoming_ev_list;
+
+    EventRecyclerAdapter adapter, past_adapter;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,12 +92,29 @@ public class Event extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        if(Utils.isNetworkAvailable(getContext())) {
+            upcoming_ev_list = new ArrayList<>();
+            past_ev_list = new ArrayList<>();
+            nonet.setVisibility(View.GONE);
+        }
+        else {
+            if(dialog != null && dialog.isShowing()) dialog.dismiss();
+            nonet.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
 
-        EventRecyclerAdapter adapter = new EventRecyclerAdapter(getContext());
-        EventRecyclerAdapter past_adapter = new EventRecyclerAdapter(getContext());
+        nonet = view.findViewById(R.id.nonet);
+        refresh_btn = view.findViewById(R.id.refresh_btn);
+
+        adapter = new EventRecyclerAdapter(getContext(), new ArrayList<>());
+        past_adapter = new EventRecyclerAdapter(getContext(), new ArrayList<>());
 
         past_event_rv = view.findViewById(R.id.past_event_view);
         past_event_rv.setAdapter(past_adapter);
@@ -81,6 +125,78 @@ public class Event extends Fragment {
         event_rv.setLayoutManager(new LinearLayoutManager(getActivity().getParent(), LinearLayoutManager.VERTICAL, false));
 //        mSnapHelper.attachToRecyclerView(event_rv);
 
+        fetchAndLoadEvents();
+
+        dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
+                .setTitle("Please Wait")
+                .setCancelable(false)
+                .setMessage("Loading data").create();
+
+        dialog.show();
+
+        refresh_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment currentFragment = getActivity().getSupportFragmentManager().findFragmentById(R.id.container);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    fragmentManager.beginTransaction().detach(currentFragment).commitNow();
+                    fragmentManager.beginTransaction().attach(currentFragment).commitNow();
+                } else {
+                    fragmentManager.beginTransaction().detach(currentFragment).attach(currentFragment).commit();
+                }
+            }
+        });
+
         return view;
     }
+
+    private void fetchAndLoadEvents() {
+        VolleyRequest request = new VolleyRequest(getContext(), new CallBack() {
+            @Override
+            public void responseCallback(JSONObject response) {
+                Log.i("event_response____", response.toString());
+                try {
+                    ArrayList<EventModel> tmp_list = new ArrayList<>();
+                    JSONArray sucess = response.getJSONArray("success");
+                    for(int i=0; i<sucess.length(); i++) {
+                        EventModel model = EventModel.objToEventModel(sucess.getJSONObject(i));
+                        tmp_list.add(model);
+                        if(model.isPast_event()) {
+                            past_ev_list.add(model);
+                        }
+                        else {
+                            upcoming_ev_list.add(model);
+                        }
+                    }
+                    Constants.event_list = new ArrayList<>();
+                    Constants.event_list.addAll(tmp_list);
+                    tmp_list = null;
+//                    Log.i("length_arraylistt", upcoming_event_list.size()+"");
+                    if(dialog != null && dialog.isShowing()) dialog.dismiss();
+                    adapter.updateView(upcoming_ev_list);
+                    past_adapter.updateView(past_ev_list);
+//                    event_adapter = new HomeUpcomingEventAdapter(upcoming_event_list, getContext());
+//                    event_view.setAdapter(event_adapter);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void errorCallback(VolleyError error_message) {
+                Log.i("-----error home frag-----", error_message.getMessage());
+                if(dialog != null && dialog.isShowing()) dialog.dismiss();
+            }
+
+            @Override
+            public void responseStatus(NetworkResponse response_code) {
+                Log.i("-----response status home frag-----", response_code.statusCode+"");
+            }
+        });
+
+        request.getRequest(Constants.URL_EVENTS);
+
+    }
+
 }

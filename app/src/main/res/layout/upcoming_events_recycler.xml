@@ -16,7 +16,7 @@
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:theme="@style/Theme.MaterialComponents.Light"
             android:layout_margin="10sp"
             app:cardCornerRadius="20sp"
@@ -29,20 +29,22 @@
                 <ImageView
                     android:id="@+id/event_image"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/app_logo"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="0dp"
+                    android:src="@drawable/error"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
+                    android:id="@+id/linearLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="80sp"
-                    android:background="@color/gray"
+                    android:background="#6F8991"
                     android:gravity="bottom"
                     android:orientation="vertical"
-                    android:padding="10sp"
+                    android:paddingBottom="10sp"
+                    android:paddingStart="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">
@@ -53,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:ellipsize="marquee"
                         android:maxLines="1"
-                        android:text="Title for the Event"
+                        android:text="Error"
                         android:textColor="@color/white"
                         android:textSize="22sp"
                         android:textStyle="bold" />
@@ -62,7 +64,7 @@
                         android:id="@+id/event_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="start date of event"
+                        android:text=""
                         android:textColor="#E6E6E6"
                         android:textSize="15sp"
                         android:textStyle="italic" />
