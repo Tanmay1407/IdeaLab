@@ -3,6 +3,6 @@
    android:shape="rectangle" >
     <solid android:color="@android:color/transparent" />
 <!--    for Adding border -> use stroke-->
-    <stroke android:width="7dip" android:color="#E29782"/>
+    <stroke android:width="5dp" android:color="#E29782"/>
 
 </shape>

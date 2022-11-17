@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,8 +119,14 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
                             }
                         }
 
+                    Log.i("event ids", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
+
                         Intent i = new Intent(c, FullScreenEvent.class);
-                        i.putExtra("event_id", event_list.get(hold.getAbsoluteAdapterPosition()).getId());
+                        i.putExtra("id", event_list.get(hold.getAbsoluteAdapterPosition()).getId());
+                        i.putExtra("event_id", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
+                        i.putExtra("title", event_list.get(hold.getAbsoluteAdapterPosition()).getTitle());
+                        i.putExtra("desc", event_list.get(hold.getAbsoluteAdapterPosition()).getDesc());
+                        i.putExtra("date", "Start Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getStart_date() + " | End Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getEnd_date());
                         c.startActivity(i);
 
 //                    }

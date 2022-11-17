@@ -11,6 +11,7 @@ public class Constants {
     public static String URL_SEND_OTP = BASE_URL+"auth/sendOtp";
     public static String URL_EVENTS = BASE_URL + "event/getAll";
     public static String URL_CREATE_USER = BASE_URL+"users/create";
+    public static String URL_GET_PROJECTS = BASE_URL+"project/getAll";
 
     public static ArrayList<EventModel> event_list;
 }

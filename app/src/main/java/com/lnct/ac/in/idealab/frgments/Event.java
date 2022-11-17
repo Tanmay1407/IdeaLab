@@ -1,16 +1,15 @@
 package com.lnct.ac.in.idealab.frgments;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,7 +41,7 @@ import java.util.ArrayList;
 public class Event extends Fragment {
 
     RecyclerView event_rv, past_event_rv;
-    AlertDialog dialog;
+    CustomDialog dialog;
     CardView nonet;
     TextView refresh_btn;
 
@@ -127,11 +126,11 @@ public class Event extends Fragment {
 
         fetchAndLoadEvents();
 
-        dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
-                .setTitle("Please Wait")
-                .setCancelable(false)
-                .setMessage("Loading data").create();
-
+        LayoutInflater inflater1 = getActivity().getLayoutInflater();
+        dialog = new CustomDialog(getActivity());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.create();
         dialog.show();
 
         refresh_btn.setOnClickListener(new View.OnClickListener() {
