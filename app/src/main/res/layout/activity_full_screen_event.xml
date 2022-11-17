@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bgColor1"
     tools:context=".activity.FullScreenEvent">
 
 
@@ -27,28 +28,55 @@
             <ImageView
                 android:id="@+id/backbtn"
                 android:layout_width="50sp"
-                android:layout_height="50sp"
+                android:layout_height="35sp"
                 android:src="@drawable/back_btn"
+                app:layout_constraintBottom_toBottomOf="@+id/cardView3"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/cardView3" />
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/cardView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10sp"
+                android:layout_marginEnd="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/registerbtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="25sp"
+                    android:paddingVertical="10sp"
+                    android:background="@color/blue"
+                    android:text="Register"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </androidx.cardview.widget.CardView>
+
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/image_cardview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:cardElevation="0dp"
+                android:layout_marginTop="10sp"
+                app:strokeColor="@color/blue"
+                app:strokeWidth="2sp"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/backbtn">
+                app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
                 <ImageView
                     android:id="@+id/event_imageholder"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:src="@drawable/event_image" />
+                    android:src="@drawable/event_image"
+                    android:layout_margin="2sp"
+                    android:elevation="10sp"/>
 
-            </androidx.cardview.widget.CardView>
+            </com.google.android.material.card.MaterialCardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"

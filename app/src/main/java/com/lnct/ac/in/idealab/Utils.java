@@ -89,6 +89,7 @@ public class Utils {
     public static void saveUser(Context context , User u){
         SharedPreferences.Editor editor = context.getSharedPreferences("data", Context.MODE_PRIVATE).edit();
         editor.putString("USER",u.toString());
+        editor.putString("USER_ID", u.get_id());
         editor.commit();
 
     }

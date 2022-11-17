@@ -4,86 +4,77 @@
     package="com.lnct.ac.in.idealab">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:usesCleartextTraffic="true"
         android:icon="@drawable/app_logo"
         android:label="@string/app_name"
         android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.IdeaLab"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
-
+        <activity
+            android:name=".quiz.AssesmentDescriptionActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".auth.RegisterActivity"
             android:exported="false" />
-
         <activity
             android:name=".auth.StartActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-
-    <activity
+        <activity
             android:name=".activity.FullScreenEvent"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-       
         <activity
             android:name=".auth.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".quiz.RightActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".quiz.ShowScoreActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".quiz.QuestionActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".quiz.WrongActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
-
-
-
         <activity
             android:name=".activity.HomeActivity"
             android:exported="true"
-            android:theme="@style/Theme.IdeaLab"
-            android:screenOrientation="portrait" />
-
-
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.IdeaLab" />
         <activity
             android:name=".activity.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.IdeaLab" >
-            
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+            android:theme="@style/Theme.IdeaLab">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data

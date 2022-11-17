@@ -1,5 +1,9 @@
 package com.lnct.ac.in.idealab.frgments;
 
+import android.app.Dialog;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -63,7 +67,7 @@ public class HomeFragment extends Fragment {
     ArrayList<EventModel> upcoming_event_list;
     int cur_pos_event, cur_pos_gallery, next_pos_event;
 
-    AlertDialog dialog;
+    CustomDialog dialog;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -185,12 +189,11 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
-        dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
-                .setView(getLayoutInflater().inflate(R.layout.dialog_layout, null))
-                .setTitle("Please Wait")
-                .setCancelable(false)
-                .setMessage("Loading data").create();
-
+        LayoutInflater inflater1 = getActivity().getLayoutInflater();
+        dialog = new CustomDialog(getActivity());
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+        dialog.create();
         dialog.show();
 
         gallery_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -377,4 +380,17 @@ public class HomeFragment extends Fragment {
 
     }
 
+}
+
+class CustomDialog extends Dialog {
+
+    public CustomDialog(@NonNull Context context) {
+        super(context);
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dialog_layout);
+    }
 }
