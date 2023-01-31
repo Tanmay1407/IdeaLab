@@ -77,7 +77,7 @@ public class ContactUs extends Fragment {
         mailus = contactus_view.findViewById(R.id.mailuslink);
 
         lnctlink.setOnClickListener(view -> {
-            String url = "";
+            String url = "https://play.google.com/store/apps/details?id=com.lnct.ac.in.idealab";
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);

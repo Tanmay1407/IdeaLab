@@ -2,8 +2,10 @@ package com.lnct.ac.in.idealab.frgments;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Build;
@@ -35,8 +37,10 @@ import com.lnct.ac.in.idealab.Utils;
 import com.lnct.ac.in.idealab.VolleyRequest;
 import com.lnct.ac.in.idealab.adapters.HomeGalleryAdapter;
 import com.lnct.ac.in.idealab.adapters.HomeUpcomingEventAdapter;
+import com.lnct.ac.in.idealab.adapters.ScrollRecyclerAdapter;
 import com.lnct.ac.in.idealab.interfaces.CallBack;
 import com.lnct.ac.in.idealab.models.EventModel;
+import com.mindinventory.AutoScrollCircularPagerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -53,19 +57,22 @@ public class HomeFragment extends Fragment {
 
     VideoView video_view;
     View view;
-    RecyclerView gallery_view, event_view;
+    RecyclerView gallery_view, event_view, scroll_recycler_view;
     TextView pos_tv, pos_tv_gallery, refresh_btn;
     CardView nonet;
     NestedScrollView mainview;
 
     HomeUpcomingEventAdapter event_adapter;
     HomeGalleryAdapter gallery_adapter;
-    LinearLayoutManager event_manager, gallery_manager;
+    LinearLayoutManager event_manager, gallery_manager, view_manager;
 
-    SnapHelper snap_helper, snap_helper2;
+    SnapHelper snap_helper, snap_helper2, snap_helper3;
     ArrayList<String> uri_list;
+    ArrayList<Drawable> list;
     ArrayList<EventModel> upcoming_event_list;
     int cur_pos_event, cur_pos_gallery, next_pos_event;
+    AutoScrollCircularPagerView autoScrollContainer;
+    ArrayList<Integer> image_list;
 
     CustomDialog dialog;
 
@@ -116,6 +123,14 @@ public class HomeFragment extends Fragment {
         if(Utils.isNetworkAvailable(getContext())) {
             nonet.setVisibility(View.GONE);
             upcoming_event_list = new ArrayList<>();
+            image_list =  new ArrayList<>();
+            image_list.add(R.drawable.slide_a);
+            image_list.add(R.drawable.slide_b);
+            image_list.add(R.drawable.slide_e);
+            image_list.add(R.drawable.slide_d);
+            image_list.add(R.drawable.slide_c);
+
+//            autoScrollContainer.setItems(image_list, true);
 
 //            dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
 //                    .setTitle("Please Wait")
@@ -126,21 +141,20 @@ public class HomeFragment extends Fragment {
 //            mainview.setVisibility(View.VISIBLE);
         }
         else {
-            if(dialog != null && dialog.isShowing()) dialog.dismiss();
+//            if(dialog != null && dialog.isShowing()) dialog.dismiss();
             nonet.setVisibility(View.VISIBLE);
 //            mainview.setVisibility(View.GONE);
         }
 
-        video_view.start();
+//        video_view.start();
 //        scroll_recycler_gallery();
         scroll_recycler_event();
-        event_view.smoothScrollToPosition(0);
+        scroll_recycler_view();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_home, container, false);
         cur_pos_event = -1;
 
@@ -150,22 +164,27 @@ public class HomeFragment extends Fragment {
         mainview = view.findViewById(R.id.mainview);
         refresh_btn = view.findViewById(R.id.refresh_btn);
 
-        video_view = view.findViewById(R.id.video_view);
-        video_view.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
-        video_view.setVideoPath("android.resource://" + getActivity().getPackageName() + "/"
-                + R.raw.videonewwhite);
-        video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mp.setLooping(true);
-            }
-        });
+//        video_view = view.findViewById(R.id.video_view);
+//        video_view.setAudioFocusRequest(AudioManager.AUDIOFOCUS_NONE);
+//        video_view.setVideoPath("android.resource://" + getActivity().getPackageName() + "/"
+//                + R.raw.videonewwhite);
+//        video_view.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+//            @Override
+//            public void onPrepared(MediaPlayer mp) {
+//                mp.setLooping(true);
+//            }
+//        });
 
         snap_helper = new PagerSnapHelper();
         snap_helper2 = new PagerSnapHelper();
+        snap_helper3 = new PagerSnapHelper();
 
+        view_manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         event_manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         gallery_manager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
+
+//        autoScrollContainer = view.findViewById(R.id.autoScrollContainer);
+//        autoScrollContainer.setItems(image_list, true);
 
 //        TODO add url array list to adapter's constructor
         gallery_adapter = new HomeGalleryAdapter();
@@ -181,6 +200,18 @@ public class HomeFragment extends Fragment {
         event_view.setLayoutManager(event_manager);
         event_view.setAdapter(event_adapter);
 
+        list = new ArrayList<Drawable>();
+        list.add(getResources().getDrawable(R.drawable.slide_a));
+        list.add(getResources().getDrawable(R.drawable.slide_b));
+        list.add(getResources().getDrawable(R.drawable.slide_c));
+        list.add(getResources().getDrawable(R.drawable.slide_d));
+        list.add(getResources().getDrawable(R.drawable.slide_e));
+
+        scroll_recycler_view = view.findViewById(R.id.scroll_recycler_view);
+        ScrollRecyclerAdapter adap = new ScrollRecyclerAdapter(list, getContext());
+        scroll_recycler_view.setLayoutManager(view_manager);
+        scroll_recycler_view.setAdapter(adap);
+
 //        event_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
 //            @Override
 //            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
@@ -189,12 +220,13 @@ public class HomeFragment extends Fragment {
 //            }
 //        });
 
-        LayoutInflater inflater1 = getActivity().getLayoutInflater();
-        dialog = new CustomDialog(getActivity());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.create();
-        dialog.show();
+//        ----------------------dialog show----------------------------------
+//        LayoutInflater inflater1 = getActivity().getLayoutInflater();
+//        dialog = new CustomDialog(getActivity());
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.setCancelable(false);
+//        dialog.create();
+//        dialog.show();
 
         gallery_view.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -224,7 +256,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        fetchAndLoadEvents();
+//        fetchAndLoadEvents();
         refresh_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -258,6 +290,7 @@ public class HomeFragment extends Fragment {
 
         snap_helper.attachToRecyclerView(gallery_view);
         snap_helper2.attachToRecyclerView(event_view);
+        snap_helper3.attachToRecyclerView(scroll_recycler_view);
 
         return view;
     }
@@ -306,6 +339,23 @@ public class HomeFragment extends Fragment {
 //            }
 //        }).start();
 //    }
+
+    private void scroll_recycler_view() {
+        new Thread(new Runnable() {
+            @Override
+            synchronized public void run() {
+                for(int i=0; i<=list.size(); i++)  {
+                    if(i == list.size()) i = 0;
+                    scroll_recycler_view.smoothScrollToPosition(i);
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+            }
+        }).start();
+    }
 
     private void scroll_recycler_event() {
         new Thread(new Runnable() {

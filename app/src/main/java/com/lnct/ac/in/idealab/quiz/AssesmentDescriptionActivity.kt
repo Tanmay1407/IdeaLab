@@ -19,7 +19,7 @@ class AssesmentDescriptionActivity : AppCompatActivity() {
 
         btnStartQuiz.setOnClickListener(object : View.OnClickListener{
             override fun onClick(p0: View?) {
-                startActivity(Intent(this@AssesmentDescriptionActivity,QuestionActivity::class.java))
+                startActivity(Intent(this@AssesmentDescriptionActivity,AssesmentActivity::class.java))
             }
         })
 

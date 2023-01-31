@@ -32,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 /**
@@ -110,19 +111,20 @@ public class ProjectFragment extends Fragment {
         nonet = v.findViewById(R.id.nonet);
         refresh_btn = v.findViewById(R.id.refresh_btn);
 
+        project_list = new ArrayList<>();
         adapter = new ProjectFragmentAdapter(getContext(), project_list);
 
         project_rv.setAdapter(adapter);
         project_rv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
 
-        dialog = new CustomDialog(getActivity());
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-        dialog.create();
-        dialog.show();
+//        dialog = new CustomDialog(getActivity());
+//        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        dialog.setCancelable(false);
+//        dialog.create();
+//        dialog.show();
 
-        fetchData();
-
+//        fetchData();
+        static_projects();
         refresh_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,6 +140,21 @@ public class ProjectFragment extends Fragment {
         });
 
         return v;
+    }
+
+    private void static_projects() {
+        ProjectModel p1 = new ProjectModel("001", "https://idea-lab.vercel.app/static/media/jpgtry.cbb41189f783b5c013a3.jpg",
+                "This is a Basic Banking website build with react,firebase", "E-commerce Website", "https://github.com/ritik2727/BankingSystem", "");
+        ProjectModel p2 = new ProjectModel("002", "https://screenshots.codesandbox.io/351mht/2.png", "Application for LNCT IDEA Lab", "LNCT IDEA Lab App", "", "");
+        ProjectModel p3 = new ProjectModel("003", "https://idea-lab.vercel.app/static/media/ngowf.ebbaf62c730122559891.jpg", "Website Payment integration using stripe in Donation website .Tech stack — ReactJS | Stripe | Material-UI .", "NGO App", "https://github.com/ritik2727/Payment_integration", "https://donation-two.vercel.app/");
+        ProjectModel p4 = new ProjectModel("004", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-7GPSzgbkhFjpOyRUk3UGQvYPw3rfvF4vaA&usqp=CAU", "Website designed for LNCT IDEA LAB, Bhopal", "IDEA Lab Website", "https://github.com/piyushpp07/IdeaLab", "https://idea-lab.vercel.app/");
+
+        project_list.add(p2);
+        project_list.add(p4);
+        project_list.add(p1);
+        project_list.add(p3);
+
+        adapter.updateView(project_list);
     }
 
     public void fetchData() {
