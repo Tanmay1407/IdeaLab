@@ -9,16 +9,16 @@
         android:id="@+id/mainview"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginVertical="20sp"
         android:layout_marginHorizontal="10sp"
-        app:cardCornerRadius="20sp"
-        app:strokeWidth="1sp"
-        app:strokeColor="@color/gra"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="20sp"
+        android:layout_marginBottom="10sp"
+        app:cardElevation="5sp"
+        app:layout_constraintBottom_toTopOf="@+id/materialCardView3"
         app:layout_constraintDimensionRatio="1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeWidth="1sp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -27,67 +27,77 @@
             <ImageView
                 android:id="@+id/event_image"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="match_parent"
                 android:src="@drawable/error"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#6F8991"
-                android:gravity="bottom"
-                android:orientation="vertical"
-                android:padding="10sp"
-                android:paddingStart="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
-
-                <TextView
-                    android:id="@+id/event_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="marquee"
-                    android:maxLines="1"
-                    android:text="Error"
-                    android:textColor="@color/white"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/event_date"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/white"
-                    android:textSize="15sp"
-                    android:textStyle="italic" />
-
-                <TextView
-                    android:id="@+id/event_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Registrations open"
-                    android:visibility="gone"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="12sp" />
-
-            </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
-<!--    <com.google.android.material.divider.MaterialDivider-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="1sp"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_marginHorizontal="20sp"-->
-<!--        android:background="@color/dark_blue"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"/>-->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="3sp"
+        android:layout_marginBottom="10sp"
+        android:layout_marginHorizontal="10sp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/event_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:layout_marginHorizontal="10sp"
+                android:text="loading..."
+                android:textColor="@color/blue"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/event_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:text="..."
+                android:layout_marginHorizontal="10sp"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/event_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registrations open"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:visibility="gone" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="1sp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="60sp"
+        android:background="@color/dark_blue"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
