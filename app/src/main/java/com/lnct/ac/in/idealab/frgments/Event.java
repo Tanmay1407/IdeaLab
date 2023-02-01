@@ -94,8 +94,7 @@ public class Event extends Fragment {
     public void onStart() {
         super.onStart();
         if(Utils.isNetworkAvailable(getContext())) {
-            upcoming_ev_list = new ArrayList<>();
-            past_ev_list = new ArrayList<>();
+
             nonet.setVisibility(View.GONE);
         }
         else {
@@ -108,6 +107,10 @@ public class Event extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_event, container, false);
+
+        upcoming_ev_list = new ArrayList<>();
+        past_ev_list = new ArrayList<>();
+
 
         nonet = view.findViewById(R.id.nonet);
         refresh_btn = view.findViewById(R.id.refresh_btn);
@@ -124,14 +127,16 @@ public class Event extends Fragment {
         event_rv.setLayoutManager(new LinearLayoutManager(getActivity().getParent(), LinearLayoutManager.VERTICAL, false));
 //        mSnapHelper.attachToRecyclerView(event_rv);
 
-        fetchAndLoadEvents();
+//        fetchAndLoadEvents();
+        loadStaticEvents();
 
         LayoutInflater inflater1 = getActivity().getLayoutInflater();
         dialog = new CustomDialog(getActivity());
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
         dialog.create();
-        dialog.show();
+//        dialog.show();
+
 
         refresh_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,6 +153,17 @@ public class Event extends Fragment {
         });
 
         return view;
+    }
+
+    private void loadStaticEvents() {
+
+        upcoming_ev_list.add(new EventModel("001", "https://instagram.fdel36-1.fna.fbcdn.net/v/t51.2885-15/323819003_553057826731316_4065689184604012230_n.webp?stp=dst-jpg_e35_p480x480&_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=qYb_7XnbZaAAX_wB6h0&edm=ACWDqb8BAAAA&ccb=7-5&ig_cache_key=MzAwODA5MTIzMTg3MDg2MTcyNw%3D%3D.2-ccb7-5&oh=00_AfA7tUyMpG1mqRRb4u8ztjXqzdGHhs4gLYX0lJqMNOwxIQ&oe=63DF53FB&_nc_sid=1527a3", "IDEA Lab internship", "14-01-2023", "Internship oppurtnity at IDEA Lab LNCT, with stipend of 5000rs.", "----------", false, new JSONArray()));
+        past_ev_list.add(new EventModel("002", "https://instagram.fdel36-1.fna.fbcdn.net/v/t51.2885-15/311099146_415210620767406_8204783205705142198_n.webp?stp=dst-jpg_e35&_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=106&_nc_ohc=5ogUEGeUofsAX9Wt7Op&tn=IuyQcV3PeJe-YRuJ&edm=ACWDqb8BAAAA&ccb=7-5&ig_cache_key=Mjk0Njc5NDMxMjY5MjA0ODQ0NA%3D%3D.2-ccb7-5&oh=00_AfA9ZHxNHxMIQfKzlrJTR5HDq1XgQXn1IfGWQPT_sXog7Q&oe=63DFB944&_nc_sid=1527a3", "AppZest", "01-11-2022", "Android application development contest for college students", "04-11-2022", true, new JSONArray()));
+        past_ev_list.add(new EventModel("003", "https://instagram.fdel36-1.fna.fbcdn.net/v/t51.2885-15/299032428_748356943160321_7119871411348497656_n.webp?stp=dst-jpg_e35&_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=105&_nc_ohc=TkS_oYgY3SMAX9Lelgx&edm=ABmJApABAAAA&ccb=7-5&ig_cache_key=MjkwMzMxNzQzODQyNzEwMTM1Ng%3D%3D.2-ccb7-5&oh=00_AfCaJ21HbnXXflQUam7JuECADl7ulp_-qxvoHgROzAWB4g&oe=63DF98A7&_nc_sid=6136e7", "3D 101", "22-08-2022", "3D modelling workshop", "27-08-2022", true, new JSONArray()));
+
+        adapter.updateView(upcoming_ev_list);
+        past_adapter.updateView(past_ev_list);
+
     }
 
     private void fetchAndLoadEvents() {

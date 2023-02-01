@@ -94,44 +94,45 @@ public class EventRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.View
                     .error(R.drawable.app_logo)
                     .into(holder.event_image);
 
-            holder.mainview.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    if (!event_list.get(hold.getAbsoluteAdapterPosition()).isPast_event()) {
-////                        TODO add intent to quiz activity
-//                    }
-//                    else {
-                        File f = Utils.getImageCacheDir(c);
-
-                        File image = new File(f,  File.separator + event_list.get(hold.getAbsoluteAdapterPosition()).getId()+".jpeg");
-                        if(!image.exists()) {
-                            try {
-                                image.createNewFile();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            Bitmap bmp = ((BitmapDrawable) holder.event_image.getDrawable()).getBitmap();
-                            try {
-                                FileOutputStream out = new FileOutputStream(image);
-                                bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
-                            } catch (FileNotFoundException e) {
-                                e.printStackTrace();
-                            }
-                        }
-
-                    Log.i("event ids", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
-
-                        Intent i = new Intent(c, FullScreenEvent.class);
-                        i.putExtra("id", event_list.get(hold.getAbsoluteAdapterPosition()).getId());
-                        i.putExtra("event_id", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
-                        i.putExtra("title", event_list.get(hold.getAbsoluteAdapterPosition()).getTitle());
-                        i.putExtra("desc", event_list.get(hold.getAbsoluteAdapterPosition()).getDesc());
-                        i.putExtra("date", "Start Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getStart_date() + " | End Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getEnd_date());
-                        c.startActivity(i);
-
-//                    }
-                }
-            });
+            //        TODO uncomment following lines ofr click on event
+//            holder.mainview.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+////                    if (!event_list.get(hold.getAbsoluteAdapterPosition()).isPast_event()) {
+//////                        TODO add intent to quiz activity
+////                    }
+////                    else {
+//                        File f = Utils.getImageCacheDir(c);
+//
+//                        File image = new File(f,  File.separator + event_list.get(hold.getAbsoluteAdapterPosition()).getId()+".jpeg");
+//                        if(!image.exists()) {
+//                            try {
+//                                image.createNewFile();
+//                            } catch (IOException e) {
+//                                e.printStackTrace();
+//                            }
+//                            Bitmap bmp = ((BitmapDrawable) holder.event_image.getDrawable()).getBitmap();
+//                            try {
+//                                FileOutputStream out = new FileOutputStream(image);
+//                                bmp.compress(Bitmap.CompressFormat.JPEG, 100, out);
+//                            } catch (FileNotFoundException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+//
+//                    Log.i("event ids", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
+//
+//                        Intent i = new Intent(c, FullScreenEvent.class);
+//                        i.putExtra("id", event_list.get(hold.getAbsoluteAdapterPosition()).getId());
+//                        i.putExtra("event_id", event_list.get(hold.getAbsoluteAdapterPosition()).getIds().toString());
+//                        i.putExtra("title", event_list.get(hold.getAbsoluteAdapterPosition()).getTitle());
+//                        i.putExtra("desc", event_list.get(hold.getAbsoluteAdapterPosition()).getDesc());
+//                        i.putExtra("date", "Start Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getStart_date() + " | End Date:" + event_list.get(hold.getAbsoluteAdapterPosition()).getEnd_date());
+//                        c.startActivity(i);
+//
+////                    }
+//                }
+//            });
 
         }
     }

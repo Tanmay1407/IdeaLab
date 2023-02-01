@@ -46,6 +46,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.sql.Array;
 import java.util.ArrayList;
 
 /**
@@ -73,6 +74,7 @@ public class HomeFragment extends Fragment {
     int cur_pos_event, cur_pos_gallery, next_pos_event;
     AutoScrollCircularPagerView autoScrollContainer;
     ArrayList<Integer> image_list;
+    ArrayList<String> gallery_list;
 
     CustomDialog dialog;
 
@@ -130,6 +132,12 @@ public class HomeFragment extends Fragment {
             image_list.add(R.drawable.slide_d);
             image_list.add(R.drawable.slide_c);
 
+
+
+
+
+
+
 //            autoScrollContainer.setItems(image_list, true);
 
 //            dialog = new androidx.appcompat.app.AlertDialog.Builder(getContext())
@@ -186,8 +194,25 @@ public class HomeFragment extends Fragment {
 //        autoScrollContainer = view.findViewById(R.id.autoScrollContainer);
 //        autoScrollContainer.setItems(image_list, true);
 
+        gallery_list = new ArrayList<>();
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h1");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h2");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h3");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h4");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h5");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h6");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h7");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h8");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h9");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h10");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h11");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h12");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h13");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h14");
+        gallery_list.add("android.resource://com.lnct.ac.in.idealab/drawable/h15");
+
 //        TODO add url array list to adapter's constructor
-        gallery_adapter = new HomeGalleryAdapter();
+        gallery_adapter = new HomeGalleryAdapter(getContext(), gallery_list);
         gallery_view = view.findViewById(R.id.gallery_recycler);
         gallery_view.setNestedScrollingEnabled(true);
         gallery_view.setLayoutManager(gallery_manager);
@@ -195,7 +220,9 @@ public class HomeFragment extends Fragment {
         gallery_view.setAdapter(gallery_adapter);
 
 
-        event_adapter = new HomeUpcomingEventAdapter(new ArrayList<>(), getContext());
+        ArrayList<EventModel> list_event = new ArrayList<>();
+        list_event.add(new EventModel("001", "https://instagram.fdel36-1.fna.fbcdn.net/v/t51.2885-15/323819003_553057826731316_4065689184604012230_n.webp?stp=dst-jpg_e35_p480x480&_nc_ht=instagram.fdel36-1.fna.fbcdn.net&_nc_cat=108&_nc_ohc=qYb_7XnbZaAAX_wB6h0&edm=ACWDqb8BAAAA&ccb=7-5&ig_cache_key=MzAwODA5MTIzMTg3MDg2MTcyNw%3D%3D.2-ccb7-5&oh=00_AfA7tUyMpG1mqRRb4u8ztjXqzdGHhs4gLYX0lJqMNOwxIQ&oe=63DF53FB&_nc_sid=1527a3", "IDEA Lab internship", "14-01-2023", "Internship oppurtnity at IDEA Lab LNCT, with stipend of 5000rs.", "----------", false, new JSONArray()));
+        event_adapter = new HomeUpcomingEventAdapter(list_event, getContext());
         event_view = view.findViewById(R.id.upcoming_events_view);
         event_view.setLayoutManager(event_manager);
         event_view.setAdapter(event_adapter);
