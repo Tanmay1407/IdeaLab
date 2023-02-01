@@ -92,20 +92,6 @@ class HomeActivity : AppCompatActivity() {
 
         val currentFragment: Fragment? = getSupportFragmentManager().findFragmentById(R.id.container)
 
-//        val fragmentManager: FragmentManager = getSupportFragmentManager()
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-//            if (currentFragment != null) {
-//                fragmentManager.beginTransaction().detach(currentFragment).commitNow()
-//            }
-//            if (fragment != null) {
-//                fragmentManager.beginTransaction().attach(fragment).commitNow()
-//            }
-//        } else {
-//            if (currentFragment != null) {
-//                fragmentManager.beginTransaction().detach(currentFragment).attach(fragment)
-//                    .commit()
-//            }
-//        }
 
         if (currentFragment != null) {
             ft.remove(currentFragment)
