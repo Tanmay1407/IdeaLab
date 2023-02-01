@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:cardBackgroundColor="@color/bgColor1"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -66,7 +67,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/gray_curved_background"
-                    android:fontFamily="@font/acme"
                     android:text="Upcoming Events"
                     android:elevation="10sp"
                     android:layout_margin="10sp"
@@ -92,7 +92,6 @@
                     android:textSize="25sp"
                     android:textStyle="bold"
                     android:background="@drawable/gray_curved_background"
-                    android:fontFamily="@font/acme"
                     android:textColor="@color/logo_blue"/>
 
                 <androidx.recyclerview.widget.RecyclerView
